@@ -1,18 +1,18 @@
 {
-  "name": "nodebb-theme-lavender",
+  "name": "nodebb-theme-obsidian-exchange",
   "version": "7.1.21",
-  "description": "Lavender Theme for NodeBB",
-  "main": "theme.less",
+  "description": "A custom Theme for NodeBB",
+  "main": "theme.scss",
   "repository": {
     "type": "git",
-    "url": "https://github.com/NodeBB/nodebb-theme-lavender"
+    "url": "https://github.com/thrila/nodebb-theme-obsidian-exchange"
   },
   "scripts": {
     "lint": "eslint ."
   },
   "keywords": [
     "nodebb",
-    "lavender",
+    "obsidian-exchange",
     "theme",
     "themes"
   ],
@@ -26,12 +26,12 @@
     "eslint-config-nodebb": "^1.1.4"
   },
   "author": {
-    "name": "psychobunny",
-    "email": "psycho.bunny@hotmail.com"
+    "name": "thrila",
+    "email": "thrila1337@proton.me"
   },
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/NodeBB/nodebb-theme-lavender/issues"
+    "url": "https://github.com/thrila/nodebb-theme-obsidian-exchange/issues"
   },
   "nbbpm": {
     "compatibility": "^2.0.0"
