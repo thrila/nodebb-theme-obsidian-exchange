@@ -1,8 +1,8 @@
 {
-    "id": "nodebb-theme-lavender",
-    "name": "Lavender",
-    "description": "A theme that utilizes a masonry (magazine-like) homepage.",
-    "url": "https://github.com/NodeBB/nodebb-theme-lavender",
+    "id": "nodebb-theme-obsidian-exchange",
+    "name": "Obsidian Exchange",
+    "description": "A dark-first marketplace/forum theme for NodeBB.",
+    "url": "https://github.com/thrila/nodebb-theme-obsidian-exchange",
     "screenshot": "screenshot.png",
     "baseTheme": "nodebb-theme-persona"
 }
