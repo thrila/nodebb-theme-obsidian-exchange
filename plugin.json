@@ -1,5 +1,5 @@
 {
-	"id": "nodebb-theme-lavender",
+	"id": "nodebb-theme-obsidian-exchange",
 	"library": "./lib/theme.js",
 	"hooks": [
 		{ "hook": "filter:widgets.getAreas", "method": "defineWidgetAreas" },
@@ -9,11 +9,11 @@
 		{ "hook": "filter:config.get", "method": "getConfig" }
 	],
 	"scripts": [
-		"static/lib/lavender.js",
+		"static/lib/obsidian-exchange.js",
 		"../nodebb-theme-persona/public/persona.js"
 	],
 	"modules": {
-		"../admin/plugins/lavender.js": "static/lib/admin.js",
+		"../admin/plugins/obsidian-exchange.js": "static/lib/admin.js",
 		"persona/taskbar.js": "../nodebb-theme-persona/public/modules/taskbar.js",
 		"persona/mobile-menu.js": "../nodebb-theme-persona/public/modules/mobile-menu.js"
 	}

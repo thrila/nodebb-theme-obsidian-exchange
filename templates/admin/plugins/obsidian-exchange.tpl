@@ -3,7 +3,7 @@
 
 	<div class="row m-0">
 		<div id="spy-container" class="col-12 col-md-8 px-0 mb-4" tabindex="0">
-			<form role="form" class="lavender-settings">
+			<form role="form" class="obsidian-exchange-settings">
 				<div class="form-check">
 					<label class="form-check-label">Disable Masonry</label>
 					<input class="form-check-input" id="disableMasonry" type="checkbox" name="disableMasonry" />

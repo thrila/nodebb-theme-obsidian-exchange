@@ -1,28 +1,10 @@
-Lavender Theme for NodeBB
-=========================
+Obsidian Exchange Theme for NodeBB
+==================================
 
-A simple theme for NodeBB. Check out the theming guide that accompanies this work at http://burnaftercompiling.com/nodebb/nodebb-hands-on-theming-guide-part-1/
-
-
-## Screenshots
-
-**Home View**
-
-[![Home View](http://i.imgur.com/fllGSje.png)](http://i.imgur.com/fllGSje.png)
-
-**Category View**
-
-[![Category View](http://i.imgur.com/qhX84In.png)](http://i.imgur.com/qhX84In.png)
-
-**Topic View**
-
-[![Topic View](http://i.imgur.com/W7cRtzQ.png)](http://i.imgur.com/W7cRtzQ.png)
+A dark-first marketplace/forum theme for NodeBB, rebuilt around the `obsidian_exchange_style_guide.md` design system.
 
 ## Installation
 
-    npm install nodebb-theme-lavender
-
-
-## Credits
-
-variables.less modified from "White Plum" by [divshot](https://github.com/divshot/)
+```bash
+npm install nodebb-theme-obsidian-exchange
+```

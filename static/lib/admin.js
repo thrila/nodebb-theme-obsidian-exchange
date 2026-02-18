@@ -1,14 +1,14 @@
 
 'use strict';
 
-define('admin/plugins/lavender', ['settings'], function (Settings) {
+define('admin/plugins/obsidian-exchange', ['settings'], function (Settings) {
 	const ACP = {};
 
 	ACP.init = function () {
-		Settings.load('lavender', $('.lavender-settings'));
+		Settings.load('obsidian-exchange', $('.obsidian-exchange-settings'));
 
 		$('#save').on('click', function () {
-			Settings.save('lavender', $('.lavender-settings'));
+			Settings.save('obsidian-exchange', $('.obsidian-exchange-settings'));
 		});
 	};
 
