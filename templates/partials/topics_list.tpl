@@ -26,12 +26,12 @@
 					<span class="oe-select-control" aria-hidden="true">
 						<i class="fa fa-fw fa-square-o pointer" component="topic/select"></i>
 						<span class="oe-select-icon oe-select-icon-unchecked">
-							<svg class="oe-icon" viewBox="0 0 24 24" fill="none">
+							<svg class="oe-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 								<rect x="4" y="4" width="16" height="16" rx="2.5" stroke="currentColor" stroke-width="1.75"></rect>
 							</svg>
 						</span>
 						<span class="oe-select-icon oe-select-icon-checked">
-							<svg class="oe-icon" viewBox="0 0 24 24" fill="none">
+							<svg class="oe-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 								<rect x="4" y="4" width="16" height="16" rx="2.5" stroke="currentColor" stroke-width="1.75"></rect>
 								<path d="m8 12 3 3 5-6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
 							</svg>
@@ -40,7 +40,7 @@
 					{{{ end }}}
 
 					<span class="thread-icon-square" aria-hidden="true">
-						<svg class="oe-icon" viewBox="0 0 24 24" fill="none">
+						<svg class="oe-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 							<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
 						</svg>
 					</span>
@@ -128,7 +128,7 @@
 				</span>
 				{{{ end }}}
 				<span class="pin-action" aria-hidden="true">
-					<svg class="oe-icon" viewBox="0 0 24 24" fill="none">
+					<svg class="oe-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 						<path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
 						<path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9Z" stroke="currentColor" stroke-width="1.75"></path>
 					</svg>

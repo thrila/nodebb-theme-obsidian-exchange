@@ -104,7 +104,7 @@
 				<footer class="post-footer">
 					<div class="post-actions">
 						<div class="dropdown moderator-tools" component="post/tools">
-							<button class="action-btn" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<button class="action-btn" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Tools" aria-label="Tools">
 								<svg class="oe-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 									<circle cx="5" cy="12" r="1.75" fill="currentColor"></circle>
 									<circle cx="12" cy="12" r="1.75" fill="currentColor"></circle>
