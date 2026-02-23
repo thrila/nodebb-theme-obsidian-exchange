@@ -127,6 +127,16 @@ input {
 	color: var(--text-primary);
 }
 
+.forum-topbar .nav-link.active,
+.forum-topbar .nav-link[aria-current="page"],
+.forum-topbar .nav-item.active > .nav-link,
+.forum-topbar .nav-item.show > .nav-link {
+	border: 1px solid var(--border-light);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	color: var(--text-primary) !important;
+}
+
 .forum-topbar .btn-primary,
 .forum-topbar .btn-outline-primary {
 	border-color: rgba(139, 92, 246, 0.6);
@@ -157,6 +167,18 @@ input {
 .forum-topbar .dropdown-item:focus-visible {
 	background: var(--base-300);
 	color: var(--text-primary);
+}
+
+/* Keep topbar hover bubbles readable without changing global tooltip styles */
+.tooltip.oe-topbar-tooltip {
+	--bs-tooltip-color: var(--text-primary);
+	--bs-tooltip-bg: var(--base-300);
+	--bs-tooltip-opacity: 1;
+}
+
+.tooltip.oe-topbar-tooltip .tooltip-inner {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md);
 }
 
 .forum-content-shell {
@@ -221,6 +243,108 @@ input {
 	color: var(--text-secondary);
 }
 
+#content .dropdown-menu {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--base-200-95);
+	color: var(--text-primary);
+}
+
+#content .dropdown-item {
+	color: var(--text-secondary);
+	border-radius: var(--radius-md);
+}
+
+#content .dropdown-item:hover,
+#content .dropdown-item:focus-visible {
+	background: var(--base-300);
+	color: var(--text-primary);
+}
+
+#content .form-control,
+#content .form-select,
+.forum-topbar .form-control,
+.forum-topbar .form-select {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	color: var(--text-primary);
+}
+
+#content .form-control::placeholder,
+#content .form-select::placeholder,
+.forum-topbar .form-control::placeholder,
+.forum-topbar .form-select::placeholder {
+	color: var(--text-tertiary);
+}
+
+#content .form-control:hover,
+#content .form-select:hover,
+.forum-topbar .form-control:hover,
+.forum-topbar .form-select:hover {
+	border-color: var(--border-light);
+}
+
+#content .form-control:focus,
+#content .form-select:focus,
+.forum-topbar .form-control:focus,
+.forum-topbar .form-select:focus {
+	border-color: rgba(139, 92, 246, 0.6);
+	background: var(--base-300);
+	color: var(--text-primary);
+	box-shadow: none;
+}
+
+#content .form-control:disabled,
+#content .form-select:disabled,
+.forum-topbar .form-control:disabled,
+.forum-topbar .form-select:disabled {
+	border-color: var(--border-default);
+	background: var(--base-200);
+	color: var(--text-tertiary);
+	opacity: 1;
+}
+
+#content .input-group-text,
+.forum-topbar .input-group-text {
+	border: 1px solid var(--border-default);
+	background: var(--base-200);
+	color: var(--text-secondary);
+}
+
+#content .input-group > .btn,
+.forum-topbar .input-group > .btn {
+	border: 1px solid var(--border-default);
+	background: var(--base-300);
+	color: var(--text-secondary);
+}
+
+#content .input-group > .btn:hover,
+#content .input-group > .btn:focus-visible,
+.forum-topbar .input-group > .btn:hover,
+.forum-topbar .input-group > .btn:focus-visible {
+	border-color: var(--border-light);
+	background: var(--base-400);
+	color: var(--text-primary);
+}
+
+#content .form-control::file-selector-button,
+.forum-topbar .form-control::file-selector-button {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md);
+	background: var(--base-300);
+	color: var(--text-secondary);
+}
+
+#content .form-control:hover::file-selector-button,
+#content .form-control:focus::file-selector-button,
+.forum-topbar .form-control:hover::file-selector-button,
+.forum-topbar .form-control:focus::file-selector-button {
+	border-color: var(--border-light);
+	background: var(--base-400);
+	color: var(--text-primary);
+}
+
 #content .btn-outline-secondary,
 #content .btn-light,
 #content .btn-secondary {
@@ -236,6 +360,26 @@ input {
 #content .btn-light:focus-visible,
 #content .btn-secondary:hover,
 #content .btn-secondary:focus-visible {
+	background: var(--base-400);
+	color: var(--text-primary);
+}
+
+#content .btn-outline-primary,
+#content .btn-outline-light,
+#content .btn-outline-dark {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	color: var(--text-secondary);
+}
+
+#content .btn-outline-primary:hover,
+#content .btn-outline-primary:focus-visible,
+#content .btn-outline-light:hover,
+#content .btn-outline-light:focus-visible,
+#content .btn-outline-dark:hover,
+#content .btn-outline-dark:focus-visible {
+	border-color: var(--border-light);
 	background: var(--base-400);
 	color: var(--text-primary);
 }
@@ -273,6 +417,116 @@ input {
 	.overlay-container .resizer {
 		display: none !important;
 	}
+}
+
+/* Chat room surfaces should follow the same card tokens as the rest of the theme */
+.page-user-chats,
+#chats-menu {
+	.card,
+	.panel,
+	.accordion-item {
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-xl);
+		background: var(--base-200);
+		box-shadow: none;
+		color: var(--text-primary);
+	}
+
+	.card-header,
+	.panel-heading,
+	.accordion-button {
+		border-bottom: 1px solid var(--border-default);
+		background: var(--base-300-60);
+		color: var(--text-primary);
+	}
+
+	.card-footer,
+	.panel-footer {
+		border-top: 1px solid var(--border-default);
+		background: var(--base-300-40);
+	}
+
+	.list-group-item,
+	.chat-room-list li,
+	.chats-list li,
+	[component="chat/room"],
+	[component="chat/recent/room"],
+	[component="chat/message"] {
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-xl);
+		background: var(--base-200);
+		color: var(--text-secondary);
+	}
+
+	/* Flatten message rows so they feel like matte cards instead of chat bubbles */
+	[component="chat/message"] {
+		border: 1px solid var(--border-default);
+		border-radius: var(--radius-xl);
+		background: var(--base-200);
+	}
+
+	.list-group-item:hover,
+	.chat-room-list li:hover,
+	.chats-list li:hover,
+	[component="chat/room"]:hover,
+	[component="chat/recent/room"]:hover {
+		background: var(--base-300-70);
+		color: var(--text-primary);
+	}
+
+	.list-group-item.active,
+	.chat-room-list li.active,
+	.chats-list li.active,
+	[component="chat/room"].active,
+	[component="chat/recent/room"].active,
+	[component="chat/recent/room"][aria-current="true"] {
+		border-color: var(--border-light);
+		background: var(--base-300);
+		color: var(--text-primary);
+	}
+
+	[component="chat/room"].active *,
+	[component="chat/recent/room"].active *,
+	[component="chat/recent/room"][aria-current="true"] * {
+		color: var(--text-primary) !important;
+	}
+
+	[component="chat/message/content"],
+	[component="chat/message/body"],
+	.chat-content,
+	.chat-body {
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+		color: var(--text-primary);
+	}
+
+	[component="chat/message/username"],
+	.chat-user,
+	.chat-room-name {
+		color: var(--text-primary);
+	}
+
+	[component="chat/message/timestamp"],
+	.chat-timestamp,
+	.chat-last-time {
+		color: var(--text-tertiary);
+	}
+}
+
+/* Keep selected nav items readable in slideout/side menus */
+#menu .nav-link.active,
+#menu .nav-link[aria-current="page"],
+#menu .active > .nav-link,
+#menu li.active > a,
+#chats-menu .nav-link.active,
+#chats-menu .nav-link[aria-current="page"],
+#chats-menu .active > .nav-link,
+#chats-menu li.active > a {
+	border: 1px solid var(--border-light);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	color: var(--text-primary) !important;
 }
 
 @media (max-width: 768px) {

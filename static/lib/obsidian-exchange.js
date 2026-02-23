@@ -142,8 +142,33 @@ $('document').ready(function () {
 		});
 	}
 
+	function applyTopbarTooltipTheme(root) {
+		var scope = root || document;
+		var selector = '.forum-topbar [data-bs-toggle="tooltip"], .forum-topbar [data-toggle="tooltip"], .forum-topbar [title], .forum-topbar [data-original-title], .forum-topbar [data-bs-original-title]';
+
+		scope.querySelectorAll(selector).forEach(function (target) {
+			target.setAttribute('data-bs-custom-class', 'oe-topbar-tooltip');
+
+			if (!window.bootstrap || !window.bootstrap.Tooltip || typeof window.bootstrap.Tooltip.getInstance !== 'function') {
+				return;
+			}
+
+			var existingInstance = window.bootstrap.Tooltip.getInstance(target);
+			if (!existingInstance) {
+				return;
+			}
+
+			existingInstance.dispose();
+			window.bootstrap.Tooltip.getOrCreateInstance(target, {
+				customClass: 'oe-topbar-tooltip',
+				container: 'body',
+			});
+		});
+	}
+
 	renderCategoryLucideIcons();
 	syncTopicSelectControls();
+	applyTopbarTooltipTheme();
 
 	require([
 		'masonry-layout',
@@ -212,6 +237,7 @@ $('document').ready(function () {
 			if (!/^admin\//.test(data.url)) {
 				renderCategoryLucideIcons();
 				syncTopicSelectControls();
+				applyTopbarTooltipTheme();
 			}
 
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -227,6 +253,7 @@ $('document').ready(function () {
 			doMasonry();
 			renderCategoryLucideIcons();
 			syncTopicSelectControls();
+			applyTopbarTooltipTheme();
 		});
 
 		if ($('.masonry').length && !masonryCalled) {

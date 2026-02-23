@@ -10,10 +10,7 @@
 		<div
 			id="category-{./cid}"
 			class="forum-category-banner category-header-image-{./imageClass}"
-			style="
-				{{{ if ./backgroundImage }}}background-image: url({./backgroundImage});{{{ end }}}
-				{{{ if ./bgColor }}}background-color: {./bgColor};{{{ end }}}
-				color: {./color};">
+			{{{ if ./backgroundImage }}}style="background-image: url({./backgroundImage});"{{{ end }}}>
 			{{{ if ./icon }}}
 			<i class="fa {./icon} fa-2x"></i>
 			{{{ else }}}

@@ -34,6 +34,6 @@
     "url": "https://github.com/thrila/nodebb-theme-obsidian-exchange/issues"
   },
   "nbbpm": {
-    "compatibility": "^2.0.0"
+    "compatibility": "^4.0.0"
   }
 }
