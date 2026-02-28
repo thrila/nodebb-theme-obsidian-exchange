@@ -12,7 +12,18 @@
 			user: JSON.parse('{{userJSON}}')
 		};
 
-		document.documentElement.style.setProperty('--panel-offset', `${localStorage.getItem('panelOffset') || 0}px`);
+		(() => {
+			let storedOffset = 0;
+			try {
+				storedOffset = parseInt(localStorage.getItem('panelOffset') || '0', 10) || 0;
+			} catch (err) {
+				storedOffset = 0;
+			}
+
+			// Keep content below the fixed topbar even before runtime measurements finish.
+			const initialOffset = storedOffset > 0 ? storedOffset : 64;
+			document.documentElement.style.setProperty('--panel-offset', `${initialOffset}px`);
+		})();
 	</script>
 
 	{{{if useCustomHTML}}}
@@ -48,6 +59,11 @@
 					const rect = header.getBoundingClientRect();
 					const offset = Math.max(0, Math.ceil(rect.bottom));
 					document.documentElement.style.setProperty('--panel-offset', `${offset}px`);
+					try {
+						localStorage.setItem('panelOffset', String(offset));
+					} catch (err) {
+						// Ignore storage failures (private mode/restrictions).
+					}
 				};
 
 				window.__oeSetPanelOffset = setPanelOffset;

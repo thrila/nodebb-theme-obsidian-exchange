@@ -484,10 +484,10 @@ input {
 	border-radius: var(--radius-md);
 }
 
-.forum-content-shell {
+#content.forum-content-shell {
 	width: calc(100% - 24px);
 	margin-inline: auto;
-	padding-top: calc(var(--panel-offset, 56px) + 12px);
+	padding-top: calc(max(var(--panel-offset, 0px), 56px) + 12px);
 	padding-bottom: 56px;
 }
 
@@ -840,9 +840,9 @@ input {
 		gap: 16px;
 	}
 
-	.forum-content-shell {
+	#content.forum-content-shell {
 		width: min(100% - 40px, var(--forum-max-width));
-		padding-top: calc(var(--panel-offset, 64px) + 24px);
+		padding-top: calc(max(var(--panel-offset, 0px), 64px) + 24px);
 		padding-bottom: 80px;
 	}
 
