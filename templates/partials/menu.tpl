@@ -1,11 +1,11 @@
-			<div class="d-flex align-items-center me-auto" style="min-width: 0px;">
-				<button type="button" class="navbar-toggler border-0" id="mobile-menu">
+			<div class="oe-topbar-primary me-auto">
+				<button type="button" class="navbar-toggler border-0 oe-mobile-toggle" id="mobile-menu">
 					<svg class="oe-topbar-icon unread-count" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 						<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
 					</svg>
-					<span component="unread/icon" class="notification-icon fa fa-fw fa-book unread-count" data-content="{unreadCount.mobileUnread}" data-unread-url="{unreadCount.unreadUrl}"></span>
+					<span component="unread/icon" class="notification-icon fa fa-fw oe-topbar-fa fa-book unread-count" data-content="{unreadCount.mobileUnread}" data-unread-url="{unreadCount.unreadUrl}"></span>
 				</button>
-				<div class="d-inline-flex align-items-center" style="min-width: 0px;">
+				<div class="oe-brand-wrap">
 					{{{ if brand:logo }}}
 					<a class="navbar-brand" href="{{{ if brand:logo:url }}}{brand:logo:url}{{{ else }}}{relative_path}/{{{ end }}}">
 						<img alt="{brand:logo:alt}" class="{brand:logo:display} forum-logo d-inline-block align-text-bottom" src="{brand:logo}?{config.cache-buster}" />
@@ -20,7 +20,7 @@
 			</div>
 
 			{{{ if (config.searchEnabled && user.privileges.search:content) }}}
-			<div class="navbar-search visible-xs">
+			<div class="navbar-search visible-xs oe-mobile-search">
 				<form action="{config.relative_path}/search" method="GET">
 					<button type="button" class="btn btn-link" aria-label="[[global:header.search]]">
 						<svg class="oe-topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -39,10 +39,10 @@
 			{{{ end }}}
 
 			{{{ if config.loggedIn }}}
-			<button type="button" class="navbar-toggler border-0" id="mobile-chats">
-				<span component="notifications/icon" class="notification-icon fa fa-fw fa-bell-o unread-count" data-content="{unreadCount.notification}"></span>
-				<span component="chat/icon" class="notification-icon fa fa-fw fa-comments unread-count" data-content="{unreadCount.chat}"></span>
-				{buildAvatar(user, "32px", true)}
+			<button type="button" class="navbar-toggler border-0 oe-mobile-user-trigger" id="mobile-chats">
+				<span component="notifications/icon" class="notification-icon fa fa-fw oe-topbar-fa fa-bell-o unread-count visually-hidden" data-content="{unreadCount.notification}"></span>
+				<span component="chat/icon" class="notification-icon fa fa-fw oe-topbar-fa fa-comments unread-count visually-hidden" data-content="{unreadCount.chat}"></span>
+				{buildAvatar(user, "32px", false)}
 			</button>
 			{{{ end }}}
 
@@ -131,7 +131,7 @@
 				</ul>
 				{{{ end }}}
 				{{{ else }}}
-				<ul class="navbar-nav me-0 mb-2 mb-lg-0"></ul>
+				<ul class="navbar-nav me-0 mb-2 mb-lg-0">
 					<li class="nav-item">
 						<a href="{relative_path}/login">
 							<svg class="oe-topbar-icon d-block d-sm-none" viewBox="0 0 24 24" fill="none" aria-hidden="true">

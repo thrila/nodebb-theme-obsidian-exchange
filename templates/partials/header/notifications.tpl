@@ -1,5 +1,5 @@
 <a data-bs-toggle="dropdown" href="#" role="button" class="nav-link position-relative" aria-haspopup="true" aria-expanded="false" aria-label="[[global:header.notifications]]">
-	<i component="notifications/icon" class="fa fa-fw {{{ if unreadCount.notification}}}fa-bell{{{ else }}}fa-bell-o{{{ end }}} unread-count" data-content="{unreadCount.notification}"></i>
+	<i component="notifications/icon" class="fa fa-fw oe-topbar-fa {{{ if unreadCount.notification}}}fa-bell{{{ else }}}fa-bell-o{{{ end }}} unread-count" data-content="{unreadCount.notification}"></i>
 </a>
 
 <ul class="notifications-dropdown dropdown-menu dropdown-menu-end p-1 shadow" role="menu">

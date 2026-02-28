@@ -142,6 +142,45 @@ input {
 	margin-right: 0;
 }
 
+.forum-topbar .oe-topbar-fa,
+.forum-topbar .nav-link i.fa,
+.forum-topbar .nav-link i.fa-regular,
+.forum-topbar .nav-link i.fa-solid {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 16px;
+	height: 16px;
+	font-size: 13px;
+	line-height: 1;
+	vertical-align: middle;
+}
+
+.forum-topbar [component="notifications/icon"],
+.forum-topbar [component="chat/icon"],
+.forum-topbar [component="unread/icon"] {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 16px !important;
+	height: 16px !important;
+	font-size: 13px !important;
+	line-height: 1 !important;
+}
+
+.forum-topbar .unread-count {
+	position: relative;
+}
+
+.forum-topbar .unread-count[data-content]::after {
+	min-width: 16px;
+	height: 16px;
+	padding: 0 4px;
+	border-radius: var(--radius-pill);
+	font-size: 10px;
+	line-height: 16px;
+}
+
 .forum-topbar .nav-link:hover,
 .forum-topbar .nav-link:focus-visible,
 .forum-topbar .btn.btn-ghost:hover,
@@ -183,12 +222,13 @@ input {
 }
 
 .forum-topbar #mobile-menu,
-.forum-topbar #mobile-chats {
+.forum-topbar #mobile-chats,
+.forum-topbar #user_dropdown {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 38px;
-	height: 38px;
+	width: 36px;
+	height: 36px;
 	border: 1px solid var(--border-default) !important;
 	border-radius: var(--radius-lg);
 	background: var(--base-300);
@@ -199,27 +239,92 @@ input {
 .forum-topbar #mobile-menu:hover,
 .forum-topbar #mobile-menu:focus-visible,
 .forum-topbar #mobile-chats:hover,
-.forum-topbar #mobile-chats:focus-visible {
+.forum-topbar #mobile-chats:focus-visible,
+.forum-topbar #user_dropdown:hover,
+.forum-topbar #user_dropdown:focus-visible {
 	border-color: var(--border-light) !important;
 	background: var(--base-400);
 	color: var(--text-primary);
 }
 
-.forum-topbar #mobile-menu .unread-count,
-.forum-topbar #mobile-chats .notification-icon {
-	color: inherit;
+.forum-topbar #mobile-menu {
+	position: relative;
 }
 
-.forum-topbar #mobile-chats .avatar {
-	width: 26px !important;
-	height: 26px !important;
+.forum-topbar #mobile-menu [component="unread/icon"] {
+	position: absolute;
+	top: -3px;
+	right: -3px;
+	font-size: 0;
+	line-height: 0;
+	color: transparent;
+}
+
+.forum-topbar #mobile-chats .avatar,
+.forum-topbar #user_dropdown .avatar {
+	width: 30px !important;
+	height: 30px !important;
 	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md) !important;
 }
 
-.forum-topbar .d-flex.align-items-center.me-auto {
+.forum-topbar #user_label {
+	padding-inline: 0 !important;
+}
+
+.forum-topbar #user_dropdown {
+	width: auto;
+	height: auto;
+	border: 0 !important;
+	background: transparent !important;
+	padding: 0;
+	gap: 8px;
+	color: var(--text-secondary);
+	text-decoration: none;
+}
+
+.forum-topbar #user_dropdown:hover,
+.forum-topbar #user_dropdown:focus-visible {
+	border-color: transparent !important;
+	background: transparent !important;
+}
+
+.forum-topbar #mobile-chats {
+	width: auto;
+	height: auto;
+	border: 0 !important;
+	background: transparent !important;
+	padding: 0;
+}
+
+.forum-topbar #mobile-chats:hover,
+.forum-topbar #mobile-chats:focus-visible {
+	border-color: transparent !important;
+	background: transparent !important;
+}
+
+.forum-topbar #logged-in-menu > .nav-item.notifications > .nav-link,
+.forum-topbar #logged-in-menu > .nav-item.chats > .nav-link {
+	width: 36px;
+	height: 36px;
+	padding: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.forum-topbar .oe-topbar-primary {
 	flex: 1 1 auto;
 	min-width: 0;
+	display: flex;
+	align-items: center;
 	gap: 8px;
+}
+
+.forum-topbar .oe-brand-wrap {
+	display: inline-flex;
+	align-items: center;
+	min-width: 0;
 }
 
 .forum-topbar .navbar-brand.text-truncate {
@@ -304,12 +409,21 @@ input {
 
 /* Keep group/user role badges aligned with Obsidian Exchange pills */
 #content a.badge[href*="/groups/"],
+#content button.badge,
+#content .group-label,
+#content .user-title,
 #content [component="user/group-label"],
 #content [component="user/title"],
 #menu a.badge[href*="/groups/"],
+#menu button.badge,
+#menu .group-label,
+#menu .user-title,
 #menu [component="user/group-label"],
 #menu [component="user/title"],
 #chats-menu a.badge[href*="/groups/"],
+#chats-menu button.badge,
+#chats-menu .group-label,
+#chats-menu .user-title,
 #chats-menu [component="user/group-label"],
 #chats-menu [component="user/title"] {
 	display: inline-flex;
