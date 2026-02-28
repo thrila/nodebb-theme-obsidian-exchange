@@ -23,12 +23,12 @@
 .topic > ul {
 	margin-bottom: 0;
 	display: grid;
-	gap: 12px;
+	gap: 10px;
 }
 
 .forum-post {
 	border: 1px solid var(--border-default);
-	border-radius: var(--radius-2xl);
+	border-radius: var(--radius-xl);
 	background: var(--base-200);
 	overflow: hidden;
 }
@@ -40,7 +40,7 @@
 
 .forum-user-pane {
 	grid-column: span 12;
-	padding: 16px;
+	padding: 12px;
 	border-bottom: 1px solid var(--border-default);
 	background: var(--base-300-40);
 }
@@ -55,6 +55,7 @@
 @media (min-width: 768px) {
 	.forum-user-pane {
 		grid-column: span 3;
+		padding: 16px;
 		border-bottom: 0;
 		border-right: 1px solid var(--border-default);
 	}
@@ -68,7 +69,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-bottom: 12px;
+	padding-bottom: 10px;
 	border-bottom: 1px solid var(--border-default);
 }
 
@@ -76,10 +77,10 @@
 .user-name a {
 	margin: 0;
 	color: var(--text-primary);
-	font-size: 0.95rem;
+	font-size: 0.88rem;
 	font-weight: 600;
 	text-transform: uppercase;
-	letter-spacing: 0.03em;
+	letter-spacing: 0.02em;
 }
 
 .status-dot {
@@ -93,18 +94,56 @@
 .avatar-slot {
 	display: flex;
 	justify-content: center;
-	margin-top: 16px;
+	margin-top: 12px;
 }
 
 .avatar-slot .avatar {
 	border: 1px solid var(--border-default);
+	width: 72px !important;
+	height: 72px !important;
+}
+
+/* Normalize NodeBB role/group badges in the user pane to the Obsidian pill system */
+.forum-user-pane [component="user/title"],
+.forum-user-pane [component="user/group-label"],
+.forum-user-pane .user-title,
+.forum-user-pane .group-label,
+.forum-user-pane .badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10px;
+	padding: 4px 10px;
+	border: 1px solid var(--border-default) !important;
+	border-radius: var(--radius-pill);
+	background: var(--base-300) !important;
+	color: var(--text-secondary) !important;
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	line-height: 1.2;
+}
+
+.forum-user-pane [component="user/title"]:hover,
+.forum-user-pane [component="user/title"]:focus-visible,
+.forum-user-pane [component="user/group-label"]:hover,
+.forum-user-pane [component="user/group-label"]:focus-visible,
+.forum-user-pane .user-title:hover,
+.forum-user-pane .user-title:focus-visible,
+.forum-user-pane .group-label:hover,
+.forum-user-pane .group-label:focus-visible,
+.forum-user-pane .badge:hover,
+.forum-user-pane .badge:focus-visible {
+	background: var(--base-400) !important;
+	color: var(--text-primary) !important;
 }
 
 .meta-stack {
-	margin-top: 16px;
+	margin-top: 12px;
 	display: grid;
 	gap: 8px;
-	font-size: 0.875rem;
+	font-size: 0.8125rem;
 }
 
 .meta-row {
@@ -114,23 +153,25 @@
 	border: 1px solid var(--border-default);
 	border-radius: var(--radius-md);
 	background: var(--base-200);
-	padding: 8px;
+	padding: 6px 8px;
 	color: var(--text-secondary);
 }
 
 .post-meta-bar {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 6px;
 	border-bottom: 1px solid var(--border-default);
 	background: var(--base-300-60);
-	padding: 12px 16px;
+	padding: 10px 12px;
 }
 
 @media (min-width: 768px) {
 	.post-meta-bar {
 		flex-direction: row;
 		align-items: center;
+		gap: 8px;
+		padding: 12px 16px;
 	}
 }
 
@@ -138,29 +179,30 @@
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;
-	gap: 12px;
-	font-size: 0.875rem;
+	gap: 8px;
+	font-size: 0.8125rem;
 	color: var(--text-secondary);
 }
 
 .post-index {
-	margin-left: auto;
+	margin-left: 0;
 	font-weight: 600;
 	color: var(--text-primary);
 }
 
 .post-body {
 	flex: 1 1 auto;
-	padding: 16px;
+	padding: 12px;
 	color: var(--text-primary);
 	display: grid;
-	gap: 14px;
+	gap: 10px;
 }
 
 .forum-topic-title {
 	display: block;
-	margin: 0 0 12px;
-	font-size: 1.35rem;
+	margin: 0 0 8px;
+	font-size: 1.1rem;
+	line-height: 1.3;
 	font-weight: 600;
 	color: var(--text-primary);
 }
@@ -168,11 +210,11 @@
 .post-content {
 	color: var(--text-primary);
 	border: 1px solid var(--border-default);
-	border-radius: var(--radius-xl);
+	border-radius: var(--radius-lg);
 	background: var(--base-200);
-	padding: clamp(14px, 0.8vw + 11px, 22px);
-	font-size: 0.96rem;
-	line-height: 1.72;
+	padding: 12px;
+	font-size: 0.92rem;
+	line-height: 1.6;
 	overflow-wrap: anywhere;
 	transition: border-color var(--duration-normal) var(--ease-standard),
 		background var(--duration-normal) var(--ease-standard);
@@ -209,8 +251,8 @@
 }
 
 .post-content blockquote {
-	margin: 1rem 0;
-	padding: 12px 14px;
+	margin: 0.8rem 0;
+	padding: 10px 12px;
 	border-left: 3px solid var(--accent-secondary);
 	border-radius: 0 var(--radius-md) var(--radius-md) 0;
 	background: var(--base-300-50);
@@ -227,8 +269,8 @@
 }
 
 .post-content pre {
-	margin: 0.95rem 0;
-	padding: 12px;
+	margin: 0.8rem 0;
+	padding: 10px;
 	border: 1px solid var(--border-default);
 	border-radius: var(--radius-md);
 	background: var(--base-100);
@@ -267,10 +309,10 @@
 }
 
 .post-signature {
-	margin-top: 14px;
+	margin-top: 10px;
 	padding-top: 8px;
 	border-top: 1px dashed var(--border-default);
-	font-size: 0.8rem;
+	font-size: 0.75rem;
 	font-style: italic;
 	color: var(--text-secondary);
 }
@@ -278,16 +320,16 @@
 .post-footer {
 	display: flex;
 	flex-direction: column;
-	gap: 12px;
+	gap: 10px;
 	border-top: 1px solid var(--border-default);
 	background: var(--base-200);
-	padding: 12px 16px;
+	padding: 10px 12px;
 }
 
 .post-actions {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 8px;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 6px;
 }
 
 .action-btn {
@@ -324,7 +366,7 @@
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
-	font-size: 0.875rem;
+	font-size: 0.8125rem;
 	color: var(--text-tertiary);
 }
 
@@ -335,133 +377,143 @@
 	background: var(--base-200);
 }
 
-@media (max-width: 767px) {
+.post-actions .dropdown {
+	width: 100%;
+}
+
+.post-actions .action-btn,
+.post-actions .dropdown > .action-btn {
+	width: 100%;
+	min-height: 40px;
+	justify-content: center;
+	padding: 7px 10px;
+	font-size: 0.8125rem;
+}
+
+.post-actions .action-btn span {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+@media (min-width: 421px) {
+	.post-actions {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+@media (min-width: 768px) {
 	.topic > ul {
-		gap: 10px;
+		gap: 12px;
 	}
 
 	.forum-post {
-		border-radius: var(--radius-xl);
-	}
-
-	.forum-user-pane {
-		padding: 12px;
+		border-radius: var(--radius-2xl);
 	}
 
 	.user-head {
-		padding-bottom: 10px;
+		padding-bottom: 12px;
 	}
 
 	.user-name,
 	.user-name a {
-		font-size: 0.88rem;
-		letter-spacing: 0.02em;
+		font-size: 0.95rem;
+		letter-spacing: 0.03em;
 	}
 
 	.avatar-slot {
-		margin-top: 12px;
+		margin-top: 16px;
 	}
 
 	.avatar-slot .avatar {
-		width: 72px !important;
-		height: 72px !important;
+		width: 96px !important;
+		height: 96px !important;
 	}
 
 	.meta-stack {
-		margin-top: 12px;
-		font-size: 0.8125rem;
+		margin-top: 16px;
+		font-size: 0.875rem;
 	}
 
 	.meta-row {
-		padding: 6px 8px;
-	}
-
-	.post-meta-bar {
-		padding: 10px 12px;
-		gap: 6px;
+		padding: 8px;
 	}
 
 	.post-meta-items {
-		gap: 8px;
-		font-size: 0.8125rem;
+		gap: 12px;
+		font-size: 0.875rem;
 	}
 
 	.post-index {
-		margin-left: 0;
+		margin-left: auto;
 	}
 
 	.post-body {
-		padding: 12px;
-		gap: 10px;
+		padding: 16px;
+		gap: 14px;
 	}
 
 	.forum-topic-title {
-		margin-bottom: 8px;
-		font-size: 1.1rem;
-		line-height: 1.3;
+		margin-bottom: 12px;
+		font-size: 1.35rem;
+		line-height: normal;
 	}
 
 	.post-content {
-		padding: 12px;
-		border-radius: var(--radius-lg);
-		font-size: 0.92rem;
-		line-height: 1.6;
+		border-radius: var(--radius-xl);
+		padding: clamp(14px, 0.8vw + 11px, 22px);
+		font-size: 0.96rem;
+		line-height: 1.72;
 	}
 
 	.post-content blockquote {
-		margin: 0.8rem 0;
-		padding: 10px 12px;
+		margin: 1rem 0;
+		padding: 12px 14px;
 	}
 
 	.post-content pre {
-		margin: 0.8rem 0;
-		padding: 10px;
+		margin: 0.95rem 0;
+		padding: 12px;
 	}
 
 	.post-signature {
-		margin-top: 10px;
-		font-size: 0.75rem;
+		margin-top: 14px;
+		font-size: 0.8rem;
 	}
 
 	.post-footer {
-		padding: 10px 12px;
-		gap: 10px;
+		gap: 12px;
+		padding: 12px 16px;
 	}
 
 	.post-actions {
-		display: grid;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: 6px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
 	}
 
 	.post-actions .dropdown {
-		width: 100%;
+		width: auto;
 	}
 
 	.post-actions .action-btn,
 	.post-actions .dropdown > .action-btn {
-		width: 100%;
-		min-height: 40px;
+		width: auto;
+		min-height: 36px;
 		justify-content: center;
-		padding: 7px 10px;
-		font-size: 0.8125rem;
+		padding: 5px 12px;
+		font-size: 0.875rem;
 	}
 
 	.post-actions .action-btn span {
-		min-width: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
+		overflow: visible;
+		text-overflow: clip;
+		white-space: normal;
 	}
 
 	.post-last-activity {
-		font-size: 0.8125rem;
-	}
-}
-
-@media (max-width: 420px) {
-	.post-actions {
-		grid-template-columns: 1fr;
+		font-size: 0.875rem;
 	}
 }
 
@@ -482,9 +534,9 @@
 .topic .quickreply,
 .topic [component="topic/quickreply"] {
 	border: 1px solid var(--border-default);
-	border-radius: var(--radius-xl);
+	border-radius: var(--radius-lg);
 	background: var(--base-200);
-	padding: 16px;
+	padding: 12px;
 }
 
 .topic .quickreply .EasyMDEContainer .editor-toolbar,
@@ -505,6 +557,21 @@
 	color: var(--text-secondary) !important;
 }
 
+.topic .quickreply .EasyMDEContainer .editor-toolbar,
+.topic [component="topic/quickreply"] .EasyMDEContainer .editor-toolbar {
+	overflow-x: auto;
+	white-space: nowrap;
+	padding: 6px;
+}
+
+.topic .quickreply .EasyMDEContainer .CodeMirror,
+.topic .quickreply .EasyMDEContainer .CodeMirror-scroll,
+.topic [component="topic/quickreply"] .EasyMDEContainer .CodeMirror,
+.topic [component="topic/quickreply"] .EasyMDEContainer .CodeMirror-scroll {
+	min-height: 11rem;
+	font-size: 0.9rem;
+}
+
 .topic .quickreply .EasyMDEContainer .editor-toolbar button:hover,
 .topic .quickreply .EasyMDEContainer .editor-toolbar button.active,
 .topic .quickreply .EasyMDEContainer .editor-toolbar button:focus-visible,
@@ -514,4 +581,25 @@
 	background: var(--base-300);
 	border-color: var(--border-light);
 	color: var(--text-primary) !important;
+}
+
+@media (min-width: 768px) {
+	.topic .quickreply,
+	.topic [component="topic/quickreply"] {
+		border-radius: var(--radius-xl);
+		padding: 16px;
+	}
+
+	.topic .quickreply .EasyMDEContainer .editor-toolbar,
+	.topic [component="topic/quickreply"] .EasyMDEContainer .editor-toolbar {
+		padding: 8px;
+	}
+
+	.topic .quickreply .EasyMDEContainer .CodeMirror,
+	.topic .quickreply .EasyMDEContainer .CodeMirror-scroll,
+	.topic [component="topic/quickreply"] .EasyMDEContainer .CodeMirror,
+	.topic [component="topic/quickreply"] .EasyMDEContainer .CodeMirror-scroll {
+		min-height: 13rem;
+		font-size: 0.96rem;
+	}
 }

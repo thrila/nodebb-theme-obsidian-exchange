@@ -1,5 +1,14 @@
 $('document').ready(function () {
 	var iconMarkupMap = {
+		'fa-bars': '<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
+		'fa-search': '<circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"></circle><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
+		'fa-bell': '<path d="M10 21h4M5.5 16.5h13l-1.5-2.5V10a5 5 0 1 0-10 0v4l-1.5 2.5Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-bell-o': '<path d="M10 21h4M5.5 16.5h13l-1.5-2.5V10a5 5 0 1 0-10 0v4l-1.5 2.5Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-caret-down': '<path d="m7 10 5 5 5-5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-check': '<path d="m5 12 4 4 10-10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-pencil': '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-sign-in': '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-sign-in-alt': '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-comments': '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-comment': '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-users': '<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="1.75"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
@@ -98,6 +107,51 @@ $('document').ready(function () {
 		});
 	}
 
+	function renderTopbarLucideIcons(root) {
+		var scope = root || document;
+
+		scope.querySelectorAll('.forum-topbar i.fa, .forum-topbar i.fa-regular, .forum-topbar i.fa-solid').forEach(function (icon) {
+			if (icon.dataset.oeLucideBound === '1') {
+				return;
+			}
+
+			// Keep component-driven icons in FA form so NodeBB runtime class updates stay stable.
+			if (icon.hasAttribute('component')) {
+				return;
+			}
+
+			var iconClass = normalizeFaIconClass(icon.classList);
+			if (!iconClass || !iconMarkupMap[iconClass]) {
+				return;
+			}
+
+			var lucideIcon = createCategoryLucideSvg(iconClass);
+			lucideIcon.classList.remove('oe-icon-lg', 'oe-category-lucide');
+			lucideIcon.classList.add('oe-topbar-icon');
+
+			Array.from(icon.classList).forEach(function (token) {
+				if (token === 'fa' || token.indexOf('fa-') === 0) {
+					return;
+				}
+				lucideIcon.classList.add(token);
+			});
+
+			Array.from(icon.attributes).forEach(function (attr) {
+				if (attr.name === 'class') {
+					return;
+				}
+				lucideIcon.setAttribute(attr.name, attr.value);
+			});
+
+			if (!lucideIcon.hasAttribute('aria-hidden')) {
+				lucideIcon.setAttribute('aria-hidden', 'true');
+			}
+
+			icon.dataset.oeLucideBound = '1';
+			icon.replaceWith(lucideIcon);
+		});
+	}
+
 	function isTopicSelectChecked(selectControl) {
 		var classNames = Array.from(selectControl.classList);
 		var hasCheckedClass = classNames.some(function (token) {
@@ -166,9 +220,28 @@ $('document').ready(function () {
 		});
 	}
 
+	function syncPanelOffset() {
+		if (typeof window.__oeSetPanelOffset !== 'function') {
+			return;
+		}
+
+		window.__oeSetPanelOffset();
+		window.requestAnimationFrame(window.__oeSetPanelOffset);
+	}
+
 	renderCategoryLucideIcons();
+	renderTopbarLucideIcons();
 	syncTopicSelectControls();
 	applyTopbarTooltipTheme();
+	syncPanelOffset();
+
+	$(document).on('click', '#mobile-menu, #mobile-chats, .navbar .navbar-search button[type="button"]', function () {
+		window.setTimeout(syncPanelOffset, 0);
+	});
+
+	$(document).on('focus blur', '.navbar .navbar-search input[name="term"]', function () {
+		window.setTimeout(syncPanelOffset, 16);
+	});
 
 	require([
 		'masonry-layout',
@@ -236,8 +309,10 @@ $('document').ready(function () {
 		$(window).on('action:ajaxify.end', function (ev, data) {
 			if (!/^admin\//.test(data.url)) {
 				renderCategoryLucideIcons();
+				renderTopbarLucideIcons();
 				syncTopicSelectControls();
 				applyTopbarTooltipTheme();
+				syncPanelOffset();
 			}
 
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -252,8 +327,10 @@ $('document').ready(function () {
 		$(window).on('action:posts.loaded', function () {
 			doMasonry();
 			renderCategoryLucideIcons();
+			renderTopbarLucideIcons();
 			syncTopicSelectControls();
 			applyTopbarTooltipTheme();
+			syncPanelOffset();
 		});
 
 		if ($('.masonry').length && !masonryCalled) {
@@ -287,8 +364,13 @@ $('document').ready(function () {
 	});
 
 	$(window).on('action:ajaxify.start', function () {
-		if ($('.navbar .navbar-collapse').hasClass('in')) {
-			$('.navbar-header button').trigger('click');
+		var collapse = $('.navbar .navbar-collapse');
+		if (collapse.hasClass('show') || collapse.hasClass('in')) {
+			var toggle = $('.navbar .navbar-toggler, .navbar-header button').first();
+			if (toggle.length) {
+				toggle.trigger('click');
+			}
 		}
+		syncPanelOffset();
 	});
 });
