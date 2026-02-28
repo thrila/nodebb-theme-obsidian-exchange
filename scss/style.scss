@@ -129,13 +129,15 @@ input {
 	width: 16px;
 	height: 16px;
 	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
 	fill: none;
 	vertical-align: -2px;
 	flex: 0 0 auto;
 }
 
 .forum-topbar .nav-link .oe-topbar-icon {
-	margin-right: 0.35rem;
+	margin-right: 0.4rem;
 }
 
 .forum-topbar .navbar-toggler .oe-topbar-icon {
@@ -151,7 +153,7 @@ input {
 	justify-content: center;
 	width: 16px;
 	height: 16px;
-	font-size: 13px;
+	font-size: 14px;
 	line-height: 1;
 	vertical-align: middle;
 }
@@ -164,8 +166,9 @@ input {
 	justify-content: center;
 	width: 16px !important;
 	height: 16px !important;
-	font-size: 13px !important;
+	font-size: 14px !important;
 	line-height: 1 !important;
+	color: var(--text-primary);
 }
 
 .forum-topbar .unread-count {
@@ -222,8 +225,7 @@ input {
 }
 
 .forum-topbar #mobile-menu,
-.forum-topbar #mobile-chats,
-.forum-topbar #user_dropdown {
+.forum-topbar #mobile-chats {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -232,16 +234,14 @@ input {
 	border: 1px solid var(--border-default) !important;
 	border-radius: var(--radius-lg);
 	background: var(--base-300);
-	color: var(--text-secondary);
+	color: var(--text-primary);
 	padding: 0;
 }
 
 .forum-topbar #mobile-menu:hover,
 .forum-topbar #mobile-menu:focus-visible,
 .forum-topbar #mobile-chats:hover,
-.forum-topbar #mobile-chats:focus-visible,
-.forum-topbar #user_dropdown:hover,
-.forum-topbar #user_dropdown:focus-visible {
+.forum-topbar #mobile-chats:focus-visible {
 	border-color: var(--border-light) !important;
 	background: var(--base-400);
 	color: var(--text-primary);
@@ -311,6 +311,18 @@ input {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	color: var(--text-primary);
+}
+
+.forum-topbar #logged-in-menu > .nav-item.notifications > .nav-link:hover,
+.forum-topbar #logged-in-menu > .nav-item.notifications > .nav-link:focus-visible,
+.forum-topbar #logged-in-menu > .nav-item.chats > .nav-link:hover,
+.forum-topbar #logged-in-menu > .nav-item.chats > .nav-link:focus-visible {
+	border-color: var(--border-light);
+	background: var(--base-400);
 }
 
 .forum-topbar .oe-topbar-primary {
@@ -852,6 +864,13 @@ input {
 
 	.forum-topbar .navbar-brand.text-truncate {
 		max-width: min(42vw, 420px);
+	}
+}
+
+@media (min-width: 992px) {
+	.forum-topbar #mobile-menu,
+	.forum-topbar #mobile-chats {
+		display: none !important;
 	}
 }
 
