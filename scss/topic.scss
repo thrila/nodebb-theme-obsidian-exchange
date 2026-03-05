@@ -583,6 +583,107 @@
 	color: var(--text-primary) !important;
 }
 
+.topic .quickreply .EasyMDEContainer .editor-toolbar .separator,
+.topic [component="topic/quickreply"] .EasyMDEContainer .editor-toolbar .separator {
+	border-color: var(--border-default);
+}
+
+.topic .quickreply .EasyMDEContainer .editor-statusbar,
+.topic [component="topic/quickreply"] .EasyMDEContainer .editor-statusbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 8px 10px;
+	border: 1px solid var(--border-default);
+	border-top: 0;
+	border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+	background: var(--base-200);
+	color: var(--text-secondary);
+	font-size: 0.75rem;
+}
+
+.topic .quickreply .EasyMDEContainer .editor-statusbar span,
+.topic [component="topic/quickreply"] .EasyMDEContainer .editor-statusbar span {
+	color: inherit;
+}
+
+.topic .quickreply .EasyMDEContainer .editor-statusbar a,
+.topic [component="topic/quickreply"] .EasyMDEContainer .editor-statusbar a {
+	color: var(--accent-primary);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.topic .quickreply .EasyMDEContainer .editor-statusbar a:hover,
+.topic .quickreply .EasyMDEContainer .editor-statusbar a:focus-visible,
+.topic [component="topic/quickreply"] .EasyMDEContainer .editor-statusbar a:hover,
+.topic [component="topic/quickreply"] .EasyMDEContainer .editor-statusbar a:focus-visible {
+	color: var(--text-primary);
+}
+
+.topic .quickreply textarea,
+.topic [component="topic/quickreply"] textarea {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-200);
+	color: var(--text-primary);
+}
+
+.topic .quickreply textarea::placeholder,
+.topic [component="topic/quickreply"] textarea::placeholder {
+	color: var(--text-tertiary);
+}
+
+.topic .quickreply .help-block,
+.topic .quickreply .composer-help,
+.topic .quickreply .formatting-help,
+.topic .quickreply .help,
+.topic .quickreply .form-text,
+.topic .quickreply .text-muted,
+.topic [component="topic/quickreply"] .help-block,
+.topic [component="topic/quickreply"] .composer-help,
+.topic [component="topic/quickreply"] .formatting-help,
+.topic [component="topic/quickreply"] .help,
+.topic [component="topic/quickreply"] .form-text,
+.topic [component="topic/quickreply"] .text-muted {
+	color: var(--text-secondary);
+	opacity: 1;
+	font-size: 0.75rem;
+	margin-top: 8px;
+}
+
+.topic .quickreply .help-block a,
+.topic .quickreply .composer-help a,
+.topic .quickreply .formatting-help a,
+.topic .quickreply .help a,
+.topic [component="topic/quickreply"] .help-block a,
+.topic [component="topic/quickreply"] .composer-help a,
+.topic [component="topic/quickreply"] .formatting-help a,
+.topic [component="topic/quickreply"] .help a {
+	color: var(--accent-primary);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+.topic .quickreply .help-block a:hover,
+.topic .quickreply .help-block a:focus-visible,
+.topic .quickreply .composer-help a:hover,
+.topic .quickreply .composer-help a:focus-visible,
+.topic .quickreply .formatting-help a:hover,
+.topic .quickreply .formatting-help a:focus-visible,
+.topic .quickreply .help a:hover,
+.topic .quickreply .help a:focus-visible,
+.topic [component="topic/quickreply"] .help-block a:hover,
+.topic [component="topic/quickreply"] .help-block a:focus-visible,
+.topic [component="topic/quickreply"] .composer-help a:hover,
+.topic [component="topic/quickreply"] .composer-help a:focus-visible,
+.topic [component="topic/quickreply"] .formatting-help a:hover,
+.topic [component="topic/quickreply"] .formatting-help a:focus-visible,
+.topic [component="topic/quickreply"] .help a:hover,
+.topic [component="topic/quickreply"] .help a:focus-visible {
+	color: var(--text-primary);
+}
+
 @media (min-width: 768px) {
 	.topic .quickreply,
 	.topic [component="topic/quickreply"] {

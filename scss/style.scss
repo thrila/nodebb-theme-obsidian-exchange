@@ -48,6 +48,7 @@ body {
 html {
 	color-scheme: dark;
 	background: var(--base-100);
+	scroll-padding-top: calc(var(--panel-offset, 56px) + 12px);
 }
 
 body {
@@ -77,6 +78,7 @@ input {
 	min-height: 100vh;
 	background: var(--base-100);
 	color: var(--text-primary);
+	padding-top: var(--panel-offset, 56px);
 }
 
 .forum-topbar {
@@ -487,8 +489,13 @@ input {
 #content.forum-content-shell {
 	width: calc(100% - 24px);
 	margin-inline: auto;
-	padding-top: calc(max(var(--panel-offset, 0px), 56px) + 12px);
+	padding-top: 12px;
 	padding-bottom: 56px;
+}
+
+#content .sticky-top {
+	top: var(--panel-offset, 56px);
+	z-index: 30;
 }
 
 .forum-stack {
@@ -606,6 +613,198 @@ input {
 	background: var(--base-200);
 	color: var(--text-tertiary);
 	opacity: 1;
+}
+
+/* Composer + markdown editor surfaces (full composer + overlays) */
+#composer,
+.composer {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--base-200);
+	color: var(--text-primary);
+}
+
+#composer .composer-header,
+#composer .composer-body,
+.composer .composer-header,
+.composer .composer-body {
+	border-color: var(--border-default);
+	background: transparent;
+}
+
+#composer .form-control,
+#composer .form-select,
+#composer textarea,
+#composer [component="composer/body"],
+.composer .form-control,
+.composer .form-select,
+.composer textarea,
+.composer [component="composer/body"] {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	color: var(--text-primary);
+}
+
+#composer .form-control::placeholder,
+#composer textarea::placeholder,
+.composer .form-control::placeholder,
+.composer textarea::placeholder {
+	color: var(--text-tertiary);
+}
+
+#composer .formatting-bar,
+#composer .composer-formatting,
+#composer .composer-toolbar,
+.composer .formatting-bar,
+.composer .composer-formatting,
+.composer .composer-toolbar {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	padding: 6px;
+	gap: 6px;
+}
+
+#composer .formatting-bar button,
+#composer .composer-formatting button,
+#composer .composer-toolbar button,
+.composer .formatting-bar button,
+.composer .composer-formatting button,
+.composer .composer-toolbar button {
+	color: var(--text-secondary);
+	border-radius: var(--radius-md);
+}
+
+#composer .formatting-bar button:hover,
+#composer .formatting-bar button:focus-visible,
+#composer .formatting-bar button.active,
+#composer .composer-formatting button:hover,
+#composer .composer-formatting button:focus-visible,
+#composer .composer-formatting button.active,
+#composer .composer-toolbar button:hover,
+#composer .composer-toolbar button:focus-visible,
+#composer .composer-toolbar button.active,
+.composer .formatting-bar button:hover,
+.composer .formatting-bar button:focus-visible,
+.composer .formatting-bar button.active,
+.composer .composer-formatting button:hover,
+.composer .composer-formatting button:focus-visible,
+.composer .composer-formatting button.active,
+.composer .composer-toolbar button:hover,
+.composer .composer-toolbar button:focus-visible,
+.composer .composer-toolbar button.active {
+	background: var(--base-400);
+	color: var(--text-primary);
+}
+
+#composer .EasyMDEContainer .editor-toolbar,
+#composer .EasyMDEContainer .CodeMirror,
+#composer .EasyMDEContainer .CodeMirror-scroll,
+#composer .EasyMDEContainer .editor-preview-side,
+.composer .EasyMDEContainer .editor-toolbar,
+.composer .EasyMDEContainer .CodeMirror,
+.composer .EasyMDEContainer .CodeMirror-scroll,
+.composer .EasyMDEContainer .editor-preview-side {
+	border-color: var(--border-default);
+	background: var(--base-200);
+	color: var(--text-primary);
+}
+
+#composer .EasyMDEContainer .editor-toolbar button,
+.composer .EasyMDEContainer .editor-toolbar button {
+	color: var(--text-secondary) !important;
+}
+
+#composer .EasyMDEContainer .editor-toolbar button:hover,
+#composer .EasyMDEContainer .editor-toolbar button.active,
+#composer .EasyMDEContainer .editor-toolbar button:focus-visible,
+.composer .EasyMDEContainer .editor-toolbar button:hover,
+.composer .EasyMDEContainer .editor-toolbar button.active,
+.composer .EasyMDEContainer .editor-toolbar button:focus-visible {
+	background: var(--base-300);
+	border-color: var(--border-light);
+	color: var(--text-primary) !important;
+}
+
+#composer .EasyMDEContainer .editor-statusbar,
+.composer .EasyMDEContainer .editor-statusbar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 8px 10px;
+	border: 1px solid var(--border-default);
+	border-top: 0;
+	border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+	background: var(--base-200);
+	color: var(--text-secondary);
+	font-size: 0.75rem;
+}
+
+#composer .EasyMDEContainer .editor-statusbar a,
+.composer .EasyMDEContainer .editor-statusbar a {
+	color: var(--accent-primary);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+#composer .EasyMDEContainer .editor-statusbar a:hover,
+#composer .EasyMDEContainer .editor-statusbar a:focus-visible,
+.composer .EasyMDEContainer .editor-statusbar a:hover,
+.composer .EasyMDEContainer .editor-statusbar a:focus-visible {
+	color: var(--text-primary);
+}
+
+#composer .help-block,
+#composer .composer-help,
+#composer .formatting-help,
+#composer .help,
+.composer .help-block,
+.composer .composer-help,
+.composer .formatting-help,
+.composer .help {
+	color: var(--text-secondary);
+	opacity: 1;
+}
+
+#composer .form-text,
+#composer .text-muted,
+.composer .form-text,
+.composer .text-muted {
+	color: var(--text-secondary);
+	opacity: 1;
+}
+
+#composer .help-block a,
+#composer .composer-help a,
+#composer .formatting-help a,
+#composer .help a,
+.composer .help-block a,
+.composer .composer-help a,
+.composer .formatting-help a,
+.composer .help a {
+	color: var(--accent-primary);
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+#composer .help-block a:hover,
+#composer .help-block a:focus-visible,
+#composer .composer-help a:hover,
+#composer .composer-help a:focus-visible,
+#composer .formatting-help a:hover,
+#composer .formatting-help a:focus-visible,
+#composer .help a:hover,
+#composer .help a:focus-visible,
+.composer .help-block a:hover,
+.composer .help-block a:focus-visible,
+.composer .composer-help a:hover,
+.composer .composer-help a:focus-visible,
+.composer .formatting-help a:hover,
+.composer .formatting-help a:focus-visible,
+.composer .help a:hover,
+.composer .help a:focus-visible {
+	color: var(--text-primary);
 }
 
 #content .input-group-text,
@@ -842,7 +1041,7 @@ input {
 
 	#content.forum-content-shell {
 		width: min(100% - 40px, var(--forum-max-width));
-		padding-top: calc(max(var(--panel-offset, 0px), 64px) + 24px);
+		padding-top: 24px;
 		padding-bottom: 80px;
 	}
 
