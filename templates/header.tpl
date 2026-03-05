@@ -56,8 +56,7 @@
 						return;
 					}
 
-					const rect = header.getBoundingClientRect();
-					const offset = Math.max(0, Math.ceil(rect.bottom));
+					const offset = Math.max(56, Math.ceil(header.getBoundingClientRect().height));
 					document.documentElement.style.setProperty('--panel-offset', `${offset}px`);
 					try {
 						localStorage.setItem('panelOffset', String(offset));
@@ -69,6 +68,35 @@
 				window.__oeSetPanelOffset = setPanelOffset;
 				setPanelOffset();
 				window.requestAnimationFrame(setPanelOffset);
+				window.addEventListener('load', setPanelOffset, { once: true });
+
+				if (document.fonts && !window.__oePanelOffsetFontsBound) {
+					window.__oePanelOffsetFontsBound = true;
+					document.fonts.ready.then(() => {
+						if (typeof window.__oeSetPanelOffset === 'function') {
+							window.__oeSetPanelOffset();
+						}
+					}).catch(() => {
+						// Ignore font loading errors and keep current spacing.
+					});
+				}
+
+				if ('ResizeObserver' in window) {
+					if (window.__oeHeaderResizeObserver) {
+						window.__oeHeaderResizeObserver.disconnect();
+					}
+
+					const header = document.getElementById('header-menu');
+					if (header) {
+						const resizeObserver = new ResizeObserver(() => {
+							if (typeof window.__oeSetPanelOffset === 'function') {
+								window.__oeSetPanelOffset();
+							}
+						});
+						resizeObserver.observe(header);
+						window.__oeHeaderResizeObserver = resizeObserver;
+					}
+				}
 
 				if (!window.__oePanelOffsetEventsBound) {
 					window.__oePanelOffsetEventsBound = true;
