@@ -7,3 +7,13 @@
 	0%, 100% { opacity: 1; }
 	50% { opacity: 0.3; }
 }
+
+@-webkit-keyframes oe-spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+@keyframes oe-spin {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}

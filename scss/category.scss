@@ -221,7 +221,7 @@
 }
 
 .topic-list-header.sticky-top {
-	top: calc(var(--panel-offset, 64px) + 10px);
+	top: calc(var(--layout-offset, 0px) + var(--panel-offset-boost, 0px) + 10px);
 	z-index: 20;
 }
 
@@ -480,6 +480,12 @@
 
 .thread-cell-right a {
 	color: var(--text-secondary);
+}
+
+.tag-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 6px;
 }
 
 @media (min-width: 640px) {
