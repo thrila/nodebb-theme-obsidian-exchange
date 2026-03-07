@@ -3,7 +3,12 @@
 					<svg class="oe-topbar-icon unread-count" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 						<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
 					</svg>
-					<span component="unread/icon" class="notification-icon fa fa-fw oe-topbar-fa fa-book unread-count" data-content="{unreadCount.mobileUnread}" data-unread-url="{unreadCount.unreadUrl}"></span>
+					<span component="unread/icon" class="notification-icon unread-count" data-content="{unreadCount.mobileUnread}" data-unread-url="{unreadCount.unreadUrl}">
+						<svg class="oe-topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+							<path d="M4 6a3 3 0 0 1 3-3h13v17H7a3 3 0 0 0-3 3V6Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path>
+							<path d="M7 3v17" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+						</svg>
+					</span>
 				</button>
 				<div class="oe-brand-wrap">
 					{{{ if brand:logo }}}
@@ -40,8 +45,17 @@
 
 			{{{ if config.loggedIn }}}
 			<button type="button" class="navbar-toggler border-0 oe-mobile-user-trigger" id="mobile-chats">
-				<span component="notifications/icon" class="notification-icon fa fa-fw oe-topbar-fa fa-bell-o unread-count visually-hidden" data-content="{unreadCount.notification}"></span>
-				<span component="chat/icon" class="notification-icon fa fa-fw oe-topbar-fa fa-comments unread-count visually-hidden" data-content="{unreadCount.chat}"></span>
+				<span component="notifications/icon" class="notification-icon unread-count visually-hidden" data-content="{unreadCount.notification}">
+					<svg class="oe-topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+						<path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+					</svg>
+				</span>
+				<span component="chat/icon" class="notification-icon unread-count visually-hidden" data-content="{unreadCount.chat}">
+					<svg class="oe-topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+						<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+					</svg>
+				</span>
 				{buildAvatar(user, "32px", false)}
 			</button>
 			{{{ end }}}

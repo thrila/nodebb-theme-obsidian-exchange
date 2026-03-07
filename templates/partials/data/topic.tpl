@@ -1,0 +1,1 @@
+itemscope itemtype="http://schema.org/Comment" data-pid="{posts.pid}" data-uid="{posts.uid}" data-tid="{posts.tid}" data-index="{posts.index}" data-username="{posts.user.username}" data-userslug="{posts.user.userslug}" data-timestamp="{posts.timestamp}" data-deleted="{posts.deleted}"

@@ -17,7 +17,18 @@
 				<label class="form-check-label name"></label>
 			</div>
 
-			<div class="text-center loading-indicator"><i class="fa fa-spinner fa-spin"></i></div>
+			<div class="text-center loading-indicator">
+				<svg class="oe-icon oe-spin" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+					<path d="M12 2v4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+					<path d="m16.2 7.8 2.9-2.9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+					<path d="M18 12h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+					<path d="m16.2 16.2 2.9 2.9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+					<path d="M12 18v4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+					<path d="m4.9 19.1 2.9-2.9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+					<path d="M2 12h4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+					<path d="m4.9 4.9 2.9 2.9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>
+				</svg>
+			</div>
 			<div class="quick-search-results-container"></div>
 		</div>
 		<button type="submit" class="btn btn-outline-secondary hide">[[global:search]]</button>

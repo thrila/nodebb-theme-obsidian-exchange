@@ -1,10 +1,15 @@
 <a class="nav-link" data-bs-toggle="dropdown" href="{relative_path}/user/{user.userslug}/chats" data-ajaxify="false" id="chat_dropdown" component="chat/dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-	<i component="chat/icon" class="fa oe-topbar-fa {{{ if unreadCount.chat}}}fa-comment{{{ else }}}fa-comment-o{{{ end }}} fa-fw unread-count" data-content="{unreadCount.chat}"></i> <span class="d-inline d-sm-none">[[global:header.chats]]</span>
+	<span component="chat/icon" class="unread-count" data-content="{unreadCount.chat}">
+		<svg class="oe-topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+	</span>
+	<span class="d-inline d-sm-none">[[global:header.chats]]</span>
 </a>
 <ul class="dropdown-menu dropdown-menu-end p-1" aria-labelledby="chat_dropdown" role="menu">
 	<li>
 		<ul component="chat/list" class="list-unstyled chat-list chats-list ghost-scrollbar pe-1">
-			<div class="rounded-1">
+			<div>
 				<div class="d-flex gap-1 justify-content-between">
 					<div class="dropdown-item p-2 d-flex gap-2 placeholder-wave">
 						<div class="main-avatar">
@@ -18,7 +23,7 @@
 					</div>
 					<div>
 						<button class="mark-read btn btn-ghost btn-sm d-flex align-items-center justify-content-center flex-grow-0 flex-shrink-0 p-1" style="width: 1.5rem; height: 1.5rem;">
-							<i class="unread fa fa-2xs fa-circle text-primary"></i>
+							<span class="oe-unread-dot" aria-hidden="true"></span>
 						</button>
 					</div>
 				</div>

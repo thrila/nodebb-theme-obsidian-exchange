@@ -1952,6 +1952,133 @@ body[class*="page-user"]:not(.page-user-chats) #content .profile-header img {
 		background: var(--base-400);
 		color: var(--text-primary);
 	}
+
+	/* Neutralize bootstrap success highlights on chat bubbles */
+	[component="chat/message"].bg-success,
+	[component="chat/message"].text-bg-success,
+	[component="chat/message"].alert-success,
+	[component="chat/message"].list-group-item-success,
+	[component="chat/message"].text-success {
+		background: var(--base-300);
+		border-color: var(--border-default);
+		color: var(--text-primary);
+	}
+
+	[component="chat/message"].self.bg-success,
+	[component="chat/message"].self.text-bg-success,
+	[component="chat/message"].self.alert-success,
+	[component="chat/message"].self.list-group-item-success,
+	[component="chat/message"].self.text-success,
+	[component="chat/message"].mine.bg-success,
+	[component="chat/message"].mine.text-bg-success,
+	[component="chat/message"].mine.alert-success,
+	[component="chat/message"].mine.list-group-item-success,
+	[component="chat/message"].mine.text-success,
+	[component="chat/message"].from-me.bg-success,
+	[component="chat/message"].from-me.text-bg-success,
+	[component="chat/message"].from-me.alert-success,
+	[component="chat/message"].from-me.list-group-item-success,
+	[component="chat/message"].from-me.text-success,
+	[component="chat/message"].sent.bg-success,
+	[component="chat/message"].sent.text-bg-success,
+	[component="chat/message"].sent.alert-success,
+	[component="chat/message"].sent.list-group-item-success,
+	[component="chat/message"].sent.text-success {
+		background: var(--base-300-70);
+		border-color: rgba(139, 92, 246, 0.6);
+		color: var(--text-primary);
+	}
+}
+
+/* Private rooms card polish */
+.page-user-chats {
+	.card,
+	.panel {
+		overflow: hidden;
+	}
+
+	.card-header,
+	.panel-heading {
+		padding: 10px 12px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		font-size: 0.75rem;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--text-tertiary);
+	}
+
+	.card-header h1,
+	.card-header h2,
+	.card-header h3,
+	.panel-heading h1,
+	.panel-heading h2,
+	.panel-heading h3,
+	.card-title,
+	.panel-title {
+		margin: 0;
+		font-size: inherit;
+		font-weight: 600;
+		color: inherit;
+	}
+
+	.card-body,
+	.panel-body {
+		padding: 12px;
+		display: grid;
+		gap: 8px;
+	}
+
+	.list-group {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		display: grid;
+		gap: 8px;
+	}
+
+	.list-group-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.chat-room-list,
+	.chat-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.chat-room-list li,
+	.chat-list li {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.chat-room-list li a,
+	.chat-list li a {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		width: 100%;
+		min-width: 0;
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.chat-room-list img,
+	.chat-list img {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+		border: 1px solid var(--border-default);
+		object-fit: cover;
+		flex: 0 0 auto;
+	}
 }
 
 /* Keep selected nav items readable in slideout/side menus */

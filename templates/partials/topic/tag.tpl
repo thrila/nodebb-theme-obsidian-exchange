@@ -1,0 +1,1 @@
+<a href="{config.relative_path}/tags/{./valueEncoded}" class="oe-tag" data-tag="{./value}">{./valueEscaped}</a>

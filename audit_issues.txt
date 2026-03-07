@@ -1,0 +1,48 @@
+Obsidian Exchange Theme - Possible Issues Audit
+Date: 2026-03-05
+
+Notes:
+- This list includes confirmed reports plus likely breakpoints inferred from the codebase.
+- Items marked "needs confirmation" are hypotheses to verify in the browser.
+
+1) Header overlap persists on /chats and /notifications (confirmed by user).
+   - Likely cause: those pages are not visually contained by #content.forum-content-shell
+     or use a page-level container that ignores the topbar spacer.
+   - Fix approach: add top offset/padding to the actual page wrapper used by those routes
+     (e.g., .page-user-chats, .page-notifications, .notifications, or body classes).
+   - Needs confirmation: inspect DOM to identify the real wrapper for /chats and /notifications.
+
+2) Topbar spacer + panel offset system not consistently applied across all pages.
+   - #content spacing is only applied to #content.forum-content-shell.
+   - If a page does not render that wrapper (or if it is replaced), spacing fails.
+   - Fix approach: apply offset to a higher-level container (e.g., #panel or #content regardless
+     of class) and add specific rules for page-specific containers.
+
+3) Debug spacing change (current): #content.forum-content-shell uses margin-top: 300px.
+   - Purpose: to confirm whether the spacing is being applied at all.
+   - Remove after verification once the true offset solution is implemented.
+
+4) Icon system mismatch in topbar (likely).
+   - static/lib/obsidian-exchange.js replaces many Font Awesome icons with Lucide SVGs,
+     but explicitly skips icons with a "component" attribute.
+   - NodeBB notification/chat icons are component-driven, so they remain FA unless
+     converted in templates. This can cause inconsistent rendering.
+   - Fix approach: either convert those specific icons to inline Lucide SVGs
+     (and keep unread count via data-content), or extend the JS to handle component icons safely.
+
+5) Icon mapping fragility (needs confirmation).
+   - iconMarkupMap expects legacy FA4 classes (fa-bell-o, fa-comment-o, etc).
+   - If NodeBB or plugins emit FA5/FA6 class tokens (fa-regular, fa-solid), normalizeFaIconClass
+     can pick the wrong token and skip rendering.
+   - Fix approach: update normalization to ignore fa-regular/fa-solid, or add mapping for those.
+
+6) Bootstrap variable overrides may not be taking effect (needs confirmation).
+   - scss/overrides.scss exists but is not imported in theme.scss.
+   - If the build pipeline does not automatically include overrides, those variables are unused.
+   - Fix approach: import overrides before persona theme in theme.scss if required by build.
+
+7) Non-overridden persona pages likely diverge from the Obsidian Exchange style (needs confirmation).
+   - Theme only overrides categories, category, topic, and header templates.
+   - Routes like /unread, /recent, /popular, /tags, /tag, /users, /notifications, /chats
+     may still use persona markup and need targeted styling.
+

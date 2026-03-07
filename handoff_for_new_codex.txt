@@ -1,0 +1,50 @@
+Handoff Summary for New Codex Context
+Date: 2026-03-05
+
+Primary open issue:
+- Fixed header still overlaps content on /chats and /notifications (user confirmed).
+- Other pages that render inside #content.forum-content-shell DO respond to spacing.
+
+What was changed to address it:
+- templates/header.tpl: JS now measures header height and sets --panel-offset = height + extra.
+  - Extra value comes from CSS variable --panel-offset-extra (20px).
+  - Removed fixed/min offsets to avoid magic numbers.
+- scss/style.scss:
+  - #panel padding-top uses var(--panel-offset).
+  - Added --panel-offset and --panel-offset-extra in :root.
+  - Removed topbar spacer and 300px debug margin.
+  - Scroll padding and sticky top use var(--panel-offset).
+  - Reduced topbar icon sizes to 14px.
+  - Added chat dropdown hover styling inside the topbar.
+- scss/category.scss: sticky header top uses var(--panel-offset) + 10px.
+
+Icon updates:
+- notifications/chat icons in header changed to Lucide SVGs:
+  - templates/partials/header/notifications.tpl
+  - templates/partials/header/chats.tpl
+  - templates/partials/menu.tpl (mobile hidden icons)
+- Topbar icon sizing reduced in scss/style.scss.
+
+Debugging notes:
+- /chats and /notifications appear to bypass #content.forum-content-shell; spacing there does not apply.
+- Likely fix: apply top offset (padding/margin) to the actual page wrapper for those routes.
+  - Look for body classes like .page-user-chats or notifications container and apply:
+    padding-top: var(--panel-offset); (or equivalent)
+- If overlap persists, inspect DOM for the main container and apply the offset there.
+
+Related files:
+- scss/style.scss
+- scss/category.scss
+- templates/header.tpl
+- templates/partials/header/notifications.tpl
+- templates/partials/header/chats.tpl
+- templates/partials/menu.tpl
+- static/lib/obsidian-exchange.js (converts some FA icons to Lucide; skips component icons)
+- audit_issues.txt (list of suspected issues and risks)
+
+Suggested next steps:
+1) Inspect /chats and /notifications DOM to find the top-level content wrapper.
+2) Apply padding-top using var(--panel-offset) on that wrapper.
+3) Re-check header overlap across routes.
+4) Confirm RHS topbar icons feel correctly sized after 14px reduction.
+

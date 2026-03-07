@@ -1,41 +1,40 @@
 <a data-bs-toggle="dropdown" href="#" role="button" class="nav-link position-relative" aria-haspopup="true" aria-expanded="false" aria-label="[[global:header.notifications]]">
-	<i component="notifications/icon" class="fa fa-fw oe-topbar-fa {{{ if unreadCount.notification}}}fa-bell{{{ else }}}fa-bell-o{{{ end }}} unread-count" data-content="{unreadCount.notification}"></i>
+	<span component="notifications/icon" class="unread-count" data-content="{unreadCount.notification}">
+		<svg class="oe-topbar-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+			<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+			<path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
+		</svg>
+	</span>
 </a>
 
-<ul class="notifications-dropdown dropdown-menu dropdown-menu-end p-1 shadow" role="menu">
+<ul class="notifications-dropdown dropdown-menu dropdown-menu-end p-2" role="menu">
 	<li>
-		<div component="notifications/list" class="list-container notification-list overscroll-behavior-contain pe-1 ff-base ghost-scrollbar">
-			<div class="mb-2 p-1">
-				<div class="d-flex gap-1 justify-content-between">
-					<div class="d-flex gap-2 flex-grow-1 placeholder-wave">
-						<div class="placeholder" style="width: 32px; height: 32px;"></div>
-						<div class="flex-grow-1">
-							<div class="d-flex flex-column">
-								<div class="text-sm">
-									<span class="placeholder placeholder-sm col-4"></span>
-									<span class="placeholder placeholder-sm col-6"></span>
-									<span class="placeholder placeholder-sm col-7"></span>
-									<span class="placeholder placeholder-sm col-2"></span>
-									<span class="placeholder placeholder-sm col-5"></span>
-								</div>
-								<div class="text-xs">
-									<div class="placeholder placeholder-xs col-6"></div>
-								</div>
-							</div>
+		<div class="oe-dropdown-surface">
+			<div class="oe-dropdown-title">[[global:header.notifications]]</div>
+			<div component="notifications/list" class="list-container notification-list overscroll-behavior-contain ff-base ghost-scrollbar">
+				<div class="oe-dropdown-item placeholder-wave">
+					<div class="placeholder" style="width: 32px; height: 32px;"></div>
+					<div class="oe-dropdown-item-body">
+						<div class="text-sm">
+							<span class="placeholder placeholder-sm col-4"></span>
+							<span class="placeholder placeholder-sm col-6"></span>
+							<span class="placeholder placeholder-sm col-7"></span>
+							<span class="placeholder placeholder-sm col-2"></span>
+							<span class="placeholder placeholder-sm col-5"></span>
+						</div>
+						<div class="text-xs">
+							<div class="placeholder placeholder-xs col-6"></div>
 						</div>
 					</div>
-					<div>
-						<button class="mark-read btn btn-ghost btn-sm d-flex align-items-center justify-content-center flex-grow-0 flex-shrink-0 p-1" style="width: 1.5rem; height: 1.5rem;">
-							<i class="unread fa fa-2xs fa-circle text-primary"></i>
-						</button>
-					</div>
+					<button class="mark-read btn btn-ghost btn-sm oe-icon-button" aria-label="[[notifications:mark-all-read]]">
+						<span class="oe-unread-dot" aria-hidden="true"></span>
+					</button>
 				</div>
 			</div>
 		</div>
 	</li>
-	<li class="dropdown-divider"></li>
 	<li>
-		<div class="d-flex justify-content-center gap-1 flex-wrap">
+		<div class="oe-dropdown-actions">
 			<a role="button" href="#" class="btn btn-sm btn-light mark-all-read flex-fill text-nowrap text-truncate ff-secondary">
 				<svg class="oe-topbar-icon me-1" viewBox="0 0 24 24" fill="none" aria-hidden="true">
 					<path d="m7 12 3 3 7-7M3 12l3 3M14 6l7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>
