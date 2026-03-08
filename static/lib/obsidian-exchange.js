@@ -15,8 +15,10 @@ $('document').ready(function () {
 		'fa-fast-backward': '<path d="m11 17-5-5 5-5"></path><path d="m18 17-5-5 5-5"></path>',
 		'fa-fast-forward': '<path d="m6 17 5-5-5-5"></path><path d="m13 17 5-5-5-5"></path>',
 		'fa-ellipsis-h': '<circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle>',
+		'fa-ellipsis-v': '<circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="19" r="1"></circle>',
 		'fa-arrow-down-wide-short': '<path d="m3 16 4 4 4-4"></path><path d="M7 20V4"></path><path d="M11 4h10"></path><path d="M11 8h7"></path><path d="M11 12h4"></path>',
 		'fa-check': '<path d="m5 12 4 4 10-10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-times': '<path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
 		'fa-pencil': '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-sign-in': '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-sign-in-alt': '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
@@ -49,6 +51,8 @@ $('document').ready(function () {
 		'fa-square-o': '<rect width="18" height="18" x="3" y="3" rx="2"></rect>',
 		'fa-square': '<rect width="18" height="18" x="3" y="3" rx="2"></rect>',
 		'fa-upload': '<path d="M12 3v12"></path><path d="m17 8-5-5-5 5"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>',
+		'fa-floppy-o': '<path d="M4 4h13l3 3v13H4z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 4v6h8V4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><rect x="8" y="14" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1.75"></rect>',
+		'fa-refresh': '<path d="M21 12a9 9 0 1 1-3.2-6.9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><path d="M21 3v6h-6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-expand': '<path d="m15 15 6 6"></path><path d="m15 9 6-6"></path><path d="M21 16v5h-5"></path><path d="M21 8V3h-5"></path><path d="M3 16v5h5"></path><path d="m3 21 6-6"></path><path d="M3 8V3h5"></path><path d="M9 9 3 3"></path>',
 		'fa-paint-brush': '<path d="m14.622 17.897-10.68-2.913"></path><path d="M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z"></path><path d="M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15"></path>',
 		'fa-calendar': '<path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path>',
@@ -97,8 +101,21 @@ $('document').ready(function () {
 	}
 
 	function tokenLooksLikeImagePath(token) {
-		if (!token || isIgnorableFaClass(token) || token.indexOf('fa-') === 0) {
+		if (!token) {
 			return false;
+		}
+
+		return (
+			/^https?:\/\//i.test(token) ||
+			token.indexOf('//') === 0 ||
+			token.indexOf('/') !== -1 ||
+			/\.(png|gif|jpe?g|webp|svg)(\?|#|$)/i.test(token)
+		);
+	}
+
+	function extractImageSrcFromToken(token) {
+		if (!token || isIgnorableFaClass(token)) {
+			return null;
 		}
 
 		var decoded = token;
@@ -108,14 +125,26 @@ $('document').ready(function () {
 			decoded = token;
 		}
 
-		return (
-			/^https?:\/\//i.test(token) ||
-			/^https?:\/\//i.test(decoded) ||
-			token.indexOf('/') !== -1 ||
-			decoded.indexOf('/') !== -1 ||
-			/\.(png|gif|jpe?g|webp|svg)(\?|#|$)/i.test(token) ||
-			/\.(png|gif|jpe?g|webp|svg)(\?|#|$)/i.test(decoded)
-		);
+		var candidates = [decoded, token];
+		for (var i = 0; i < candidates.length; i += 1) {
+			var candidate = candidates[i];
+			if (!candidate) {
+				continue;
+			}
+
+			if (tokenLooksLikeImagePath(candidate) && candidate.indexOf('fa-') !== 0) {
+				return candidate;
+			}
+
+			if (candidate.indexOf('fa-') === 0) {
+				var stripped = candidate.slice(3);
+				if (tokenLooksLikeImagePath(stripped)) {
+					return stripped;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	function getBadgeImageSrcFromIcon(icon) {
@@ -126,11 +155,12 @@ $('document').ready(function () {
 
 		var src = null;
 		Array.from(icon.classList).some(function (token) {
-			if (!tokenLooksLikeImagePath(token)) {
+			var extractedSrc = extractImageSrcFromToken(token);
+			if (!extractedSrc) {
 				return false;
 			}
 
-			src = token;
+			src = extractedSrc;
 			return true;
 		});
 

@@ -647,10 +647,9 @@ body.page-notifications {
 
 /* User profile pages */
 body[class*="page-user"]:not(.page-user-chats) #content .account {
-	display: grid;
-	gap: 16px;
-	margin-top: 0;
+	margin-top: 0 !important;
 	padding-top: 0;
+	position: relative;
 }
 
 body[class*="page-user"]:not(.page-user-chats) #content .account .row {
@@ -659,17 +658,169 @@ body[class*="page-user"]:not(.page-user-chats) #content .account .row {
 
 body[class*="page-user"]:not(.page-user-chats) #content .account-cover,
 body[class*="page-user"]:not(.page-user-chats) #content .account-header,
-body[class*="page-user"]:not(.page-user-chats) #content .cover,
 body[class*="page-user"]:not(.page-user-chats) #content .profile-header {
 	border: 1px solid var(--border-default);
 	border-radius: var(--radius-2xl);
-	overflow: hidden;
 	background: var(--base-200);
-	padding: 16px;
-	display: grid;
-	gap: 12px;
-	align-items: center;
 	margin-top: 0;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover {
+	position: relative !important;
+	top: 0 !important;
+	left: 0 !important;
+	right: auto !important;
+	display: block;
+	width: 100%;
+	height: auto !important;
+	min-height: clamp(170px, 34vw, 250px);
+	margin: 0 0 clamp(14px, 2.4vw, 22px) 0 !important;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-2xl);
+	overflow: hidden;
+	background-color: var(--base-300);
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(6, 182, 212, 0.14));
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover::after,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(15, 15, 15, 0.08) 0%, rgba(15, 15, 15, 0.45) 100%);
+	pointer-events: none;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .container,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover .container {
+	position: absolute;
+	inset: 0;
+	padding: 12px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+	gap: 8px;
+	pointer-events: none;
+	z-index: 3;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .container > *,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover .container > * {
+	pointer-events: auto;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .controls,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover .controls {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	height: auto;
+	line-height: 1;
+	opacity: 1 !important;
+	pointer-events: auto;
+	text-align: initial;
+	margin: 0 8px 0 0;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover:hover .controls,
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .controls:focus-within {
+	opacity: 1;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .controls > *,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover .controls > * {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 34px;
+	height: 34px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-200-95);
+	color: var(--text-primary);
+	text-decoration: none;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .controls i,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover .controls i,
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .controls svg,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover .controls svg {
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 16px;
+	height: 16px;
+	font-size: 16px;
+	line-height: 1;
+	background: transparent !important;
+	color: currentColor !important;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .save,
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover .indicator,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover .save,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover .indicator {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	right: auto;
+	display: none;
+	align-items: center;
+	gap: 6px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-200-95);
+	color: var(--text-primary);
+	padding: 6px 10px;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	text-decoration: none;
+	z-index: 4;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover.active .save,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover.active .save {
+	display: inline-flex;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .cover.saving .indicator,
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover.saving .indicator {
+	display: inline-flex;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .dropdown.account-fab {
+	position: static;
+	right: auto;
+	bottom: auto;
+	margin: 0;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .dropdown.account-fab .persona-fab {
+	width: 34px;
+	height: 34px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-200-95);
+	color: var(--text-primary);
+	font-size: 16px;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .dropdown.account-fab .dropdown-menu {
+	margin-top: 8px;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .profile {
+	margin-top: clamp(10px, 2vw, 20px) !important;
+	margin-bottom: clamp(24px, 4vw, 40px);
+	padding-inline: clamp(8px, 2vw, 16px);
 }
 
 body[class*="page-user"]:not(.page-user-chats) #content .account > *:first-child {
@@ -683,23 +834,42 @@ body[class*="page-user"]:not(.page-user-chats) #content .account [class*="col-"]
 body[class*="page-user"]:not(.page-user-chats) #content .account-picture,
 body[class*="page-user"]:not(.page-user-chats) #content .user-picture,
 body[class*="page-user"]:not(.page-user-chats) #content .avatar-wrapper {
+	position: absolute !important;
+	left: 14px !important;
+	bottom: 14px !important;
+	top: auto !important;
+	right: auto !important;
+	margin: 0 !important;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 80px;
-	height: 80px;
-	border-radius: var(--radius-lg);
+	width: clamp(84px, 18vw, 128px);
+	height: clamp(84px, 18vw, 128px);
+	aspect-ratio: 1 / 1;
+	border-radius: 50% !important;
 	border: 1px solid var(--border-default);
 	background: var(--base-300);
-	overflow: hidden;
+	overflow: visible;
+	z-index: 12;
+	transform: none !important;
+	border-width: 2px;
+	border-color: var(--base-100);
+	box-shadow: none;
 }
 
 body[class*="page-user"]:not(.page-user-chats) #content .account-picture img,
 body[class*="page-user"]:not(.page-user-chats) #content .user-picture img,
 body[class*="page-user"]:not(.page-user-chats) #content .avatar-wrapper img {
+	display: block;
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
+	border-radius: 50%;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper > .avatar {
+	border-radius: 50%;
+	overflow: hidden;
 }
 
 body[class*="page-user"]:not(.page-user-chats) #content .account-username,
@@ -716,6 +886,27 @@ body[class*="page-user"]:not(.page-user-chats) #content .account-about {
 	line-height: 1.6;
 }
 
+body[class*="page-user"]:not(.page-user-chats) #content .account .fullname {
+	margin: 0 0 8px;
+	font-family: var(--font-display);
+	font-size: clamp(1.35rem, 2.3vw, 2rem);
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: var(--text-primary) !important;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .username {
+	margin: 0 0 8px;
+	font-size: 0.95rem;
+	color: var(--text-secondary);
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .aboutme {
+	max-width: min(760px, 100%);
+	margin-inline: auto !important;
+	color: var(--text-secondary) !important;
+}
+
 body[class*="page-user"]:not(.page-user-chats) #content .account-stats,
 body[class*="page-user"]:not(.page-user-chats) #content .user-stats,
 body[class*="page-user"]:not(.page-user-chats) #content .stats {
@@ -725,6 +916,20 @@ body[class*="page-user"]:not(.page-user-chats) #content .stats {
 	margin: 0;
 	padding: 0;
 	list-style: none;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .account-stats .stat {
+	min-width: 0 !important;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-300-50);
+	padding: 8px 10px;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .profile-meta {
+	margin-top: 12px;
+	row-gap: 10px;
+	color: var(--text-secondary);
 }
 
 body[class*="page-user"]:not(.page-user-chats) #content .account-stats li,
@@ -817,15 +1022,80 @@ body[class*="page-user"]:not(.page-user-chats) #content .account .btn-primary:fo
 	background: var(--base-400);
 }
 
-body[class*="page-user"]:not(.page-user-chats) #content .account-cover img,
-body[class*="page-user"]:not(.page-user-chats) #content .cover img,
-body[class*="page-user"]:not(.page-user-chats) #content .profile-header img {
-	max-width: 100%;
-	height: auto;
+body[class*="page-user"]:not(.page-user-chats) #content .account-cover img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 	display: block;
 }
 
+body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper [component="user/status"] {
+	top: auto !important;
+	right: 2px !important;
+	bottom: 2px !important;
+	left: auto !important;
+	width: 14px;
+	height: 14px;
+	min-width: 14px;
+	min-height: 14px;
+	padding: 0;
+	border-width: 1px !important;
+	border-color: var(--base-100) !important;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper .persona-fab.btn-morph {
+	position: absolute;
+	top: auto;
+	right: -4px;
+	bottom: -4px;
+	width: 28px;
+	height: 28px;
+	border: 1px solid var(--border-default);
+	border-radius: 50%;
+	background: var(--base-200-95);
+	color: var(--text-primary);
+	font-size: 14px;
+	line-height: 1;
+	padding: 0;
+	box-sizing: border-box;
+	z-index: 14;
+}
+
+body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper .persona-fab.btn-morph > span {
+	margin: 0.5em;
+}
+
 @media (max-width: 767px) {
+	body[class*="page-user"]:not(.page-user-chats) #content .account .cover,
+	body[class*="page-user"]:not(.page-user-chats) #content .account-cover {
+		min-height: 170px;
+	}
+
+	body[class*="page-user"]:not(.page-user-chats) #content .account .cover .container,
+	body[class*="page-user"]:not(.page-user-chats) #content .account-cover .container {
+		padding: 10px;
+	}
+
+	body[class*="page-user"]:not(.page-user-chats) #content .account .cover .controls,
+	body[class*="page-user"]:not(.page-user-chats) #content .account-cover .controls {
+		gap: 6px;
+		margin-right: 6px;
+	}
+
+	body[class*="page-user"]:not(.page-user-chats) #content .account .cover .controls > *,
+	body[class*="page-user"]:not(.page-user-chats) #content .account-cover .controls > *,
+	body[class*="page-user"]:not(.page-user-chats) #content .account .dropdown.account-fab .persona-fab {
+		width: 30px;
+		height: 30px;
+	}
+
+	body[class*="page-user"]:not(.page-user-chats) #content .avatar-wrapper {
+		left: 10px !important;
+		bottom: 10px !important;
+		width: 76px;
+		height: 76px;
+	}
+
 	body[class*="page-user"]:not(.page-user-chats) #content .account-actions,
 	body[class*="page-user"]:not(.page-user-chats) #content .account-buttons,
 	body[class*="page-user"]:not(.page-user-chats) #content .account-controls,
@@ -2103,20 +2373,21 @@ body[class*="page-user"]:not(.page-user-chats) #content .profile-header img {
 		--forum-content-top-padding: 24px;
 	}
 
-	body[class*="page-user"]:not(.page-user-chats) #content .account-cover,
-	body[class*="page-user"]:not(.page-user-chats) #content .account-header,
-	body[class*="page-user"]:not(.page-user-chats) #content .cover,
-	body[class*="page-user"]:not(.page-user-chats) #content .profile-header {
-		display: flex;
-		gap: 16px;
-		align-items: center;
+	body[class*="page-user"]:not(.page-user-chats) #content .account .cover,
+	body[class*="page-user"]:not(.page-user-chats) #content .account-cover {
+		min-height: clamp(220px, 26vw, 300px);
 	}
 
-	body[class*="page-user"]:not(.page-user-chats) #content .account-picture,
-	body[class*="page-user"]:not(.page-user-chats) #content .user-picture,
+	body[class*="page-user"]:not(.page-user-chats) #content .account .cover .container,
+	body[class*="page-user"]:not(.page-user-chats) #content .account-cover .container {
+		padding: 14px;
+	}
+
 	body[class*="page-user"]:not(.page-user-chats) #content .avatar-wrapper {
-		width: 96px;
-		height: 96px;
+		left: 18px !important;
+		bottom: 18px !important;
+		width: clamp(96px, 10vw, 132px);
+		height: clamp(96px, 10vw, 132px);
 	}
 
 	.forum-topbar-inner {
