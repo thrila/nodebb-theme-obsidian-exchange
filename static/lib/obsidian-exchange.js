@@ -96,6 +96,51 @@ $('document').ready(function () {
 		);
 	}
 
+	function tokenLooksLikeImagePath(token) {
+		if (!token || isIgnorableFaClass(token) || token.indexOf('fa-') === 0) {
+			return false;
+		}
+
+		var decoded = token;
+		try {
+			decoded = decodeURIComponent(token);
+		} catch (err) {
+			decoded = token;
+		}
+
+		return (
+			/^https?:\/\//i.test(token) ||
+			/^https?:\/\//i.test(decoded) ||
+			token.indexOf('/') !== -1 ||
+			decoded.indexOf('/') !== -1 ||
+			/\.(png|gif|jpe?g|webp|svg)(\?|#|$)/i.test(token) ||
+			/\.(png|gif|jpe?g|webp|svg)(\?|#|$)/i.test(decoded)
+		);
+	}
+
+	function getBadgeImageSrcFromIcon(icon) {
+		var dataIconSrc = icon.getAttribute('data-icon-src') || icon.dataset.iconSrc;
+		if (dataIconSrc) {
+			return dataIconSrc;
+		}
+
+		var src = null;
+		Array.from(icon.classList).some(function (token) {
+			if (!tokenLooksLikeImagePath(token)) {
+				return false;
+			}
+
+			src = token;
+			return true;
+		});
+
+		return src;
+	}
+
+	function isGroupBadgeIcon(icon) {
+		return Boolean(icon.closest('.group-label, [component="user/group-label"], a.badge[href*="/groups/"]'));
+	}
+
 	function normalizeFaIconClass(classList) {
 		var iconClass = null;
 
@@ -173,6 +218,10 @@ $('document').ready(function () {
 				return;
 			}
 
+			if (isGroupBadgeIcon(icon) && getBadgeImageSrcFromIcon(icon)) {
+				return;
+			}
+
 			var iconClass = normalizeFaIconClass(icon.classList);
 			if (!iconClass || !iconMarkupMap[iconClass]) {
 				return;
@@ -212,30 +261,23 @@ $('document').ready(function () {
 	function renderGroupBadgeImages(root) {
 		var scope = root || document;
 
-		scope.querySelectorAll('.group-label i.fa, [component="user/group-label"] i.fa, a.badge[href*="/groups/"] i.fa').forEach(function (icon) {
+		scope.querySelectorAll('.group-label i, [component="user/group-label"] i, a.badge[href*="/groups/"] i').forEach(function (icon) {
 			if (icon.dataset.oeBadgeImageBound === '1') {
 				return;
 			}
 
-			var src = null;
-			Array.from(icon.classList).some(function (token) {
-				if (isIgnorableFaClass(token) || token.indexOf('fa-') === 0) {
-					return false;
-				}
-
-				if (/^https?:\/\//i.test(token) || token.indexOf('/') !== -1 || /\.(png|gif|jpe?g|webp|svg)(\?|#|$)/i.test(token)) {
-					src = token;
-					return true;
-				}
-
-				return false;
-			});
-
+			var src = getBadgeImageSrcFromIcon(icon);
 			if (!src) {
 				return;
 			}
 
-			if (!/^https?:\/\//i.test(src) && src.indexOf('/') !== 0) {
+			try {
+				src = decodeURIComponent(src);
+			} catch (err) {
+				// Keep original src when token isn't URI-encoded.
+			}
+
+			if (!/^https?:\/\//i.test(src) && src.indexOf('//') !== 0 && src.indexOf('/') !== 0) {
 				if (typeof config !== 'undefined' && config.relative_path) {
 					src = config.relative_path.replace(/\/$/, '') + '/' + src;
 				} else {
