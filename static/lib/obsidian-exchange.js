@@ -448,6 +448,198 @@ $('document').ready(function () {
 		window.requestAnimationFrame(window.__oeSetPanelOffset);
 	}
 
+	function hideSkinSelectorForRegularUsers() {
+		if (!document.body.classList.contains('page-user-settings')) {
+			return;
+		}
+
+		if (!window.app || !app.user || app.user.isAdmin) {
+			return;
+		}
+
+		var skinSelect = document.querySelector('#bootswatchSkin');
+		if (!skinSelect) {
+			return;
+		}
+
+		var card = skinSelect.closest('.card');
+		var heading = card ? card.previousElementSibling : null;
+		if (heading && /^H[1-6]$/.test(heading.tagName)) {
+			heading.remove();
+		}
+		if (card) {
+			card.remove();
+		}
+	}
+
+	function bindChatEnterToSend(root) {
+		if (!window.utils || !utils.isMobile()) {
+			return;
+		}
+
+		var scope = root || document;
+		scope.querySelectorAll('[component="chat/input"]').forEach(function (input) {
+			if (input.dataset.oeEnterSendBound === '1') {
+				return;
+			}
+
+			input.dataset.oeEnterSendBound = '1';
+			input.addEventListener('keydown', function (event) {
+				if (event.key !== 'Enter' || event.shiftKey || event.isComposing) {
+					return;
+				}
+
+				var composer = input.closest('[component="chat/composer"]');
+				var sendButton = composer && composer.querySelector('[data-action="send"]');
+				if (!sendButton) {
+					return;
+				}
+
+				event.preventDefault();
+				sendButton.click();
+			});
+		});
+	}
+
+	function sortUsersPageCards(container) {
+		var cards = Array.from(container.querySelectorAll('.registered-user[data-uid]'));
+		cards.forEach(function (card, index) {
+			if (!card.dataset.oeUserOrder) {
+				card.dataset.oeUserOrder = String(index);
+			}
+		});
+
+		cards.sort(function (left, right) {
+			var adminDiff = parseInt(right.dataset.isAdmin || '0', 10) - parseInt(left.dataset.isAdmin || '0', 10);
+			if (adminDiff !== 0) {
+				return adminDiff;
+			}
+
+			return parseInt(left.dataset.oeUserOrder || '0', 10) - parseInt(right.dataset.oeUserOrder || '0', 10);
+		});
+
+		var needsReorder = cards.some(function (card, index) {
+			return container.children[index] !== card;
+		});
+		if (!needsReorder) {
+			return;
+		}
+
+		cards.forEach(function (card) {
+			container.appendChild(card);
+		});
+	}
+
+	function buildUsersItemTemplateData(userData) {
+		var flags = ['section_online', 'section_joindate', 'section_sort-reputation', 'section_sort-posts', 'section_flagged'];
+		var templateData = {
+			users: userData,
+		};
+
+		flags.forEach(function (flag) {
+			templateData[flag] = Boolean(window.ajaxify && ajaxify.data && ajaxify.data[flag]);
+		});
+
+		return templateData;
+	}
+
+	function pinAdministratorsOnUsersPage() {
+		if (!document.body.classList.contains('page-users')) {
+			return;
+		}
+
+		var container = document.querySelector('#users-container');
+		if (!container) {
+			return;
+		}
+
+		if (container.dataset.oeUsersObserved !== '1') {
+			container.dataset.oeUsersObserved = '1';
+			var observer = new MutationObserver(function () {
+				window.requestAnimationFrame(pinAdministratorsOnUsersPage);
+			});
+			observer.observe(container, {
+				childList: true,
+			});
+		}
+
+		sortUsersPageCards(container);
+
+		function hydrateAdminUsers(adminUsers) {
+			var usersToInsert = [];
+
+			adminUsers.forEach(function (adminUser) {
+				var existing = container.querySelector('.registered-user[data-uid="' + adminUser.uid + '"]');
+				if (existing) {
+					existing.dataset.isAdmin = '1';
+					return;
+				}
+
+				adminUser.isAdministrator = true;
+				if (!adminUser.primaryRoleLabel) {
+					adminUser.primaryRoleLabel = 'Administrators';
+				}
+				usersToInsert.push(adminUser);
+			});
+
+			return Promise.all(usersToInsert.map(function (adminUser) {
+				return app.parseAndTranslate('partials/users/item', buildUsersItemTemplateData(adminUser));
+			})).then(function (renderedItems) {
+				renderedItems.reverse().forEach(function (itemHtml) {
+					if (itemHtml && itemHtml.length) {
+						container.insertBefore(itemHtml[0], container.firstChild);
+					}
+				});
+
+				$(container).find('.timeago').timeago();
+				sortUsersPageCards(container);
+			});
+		}
+
+		if (Array.isArray(window.__oeAdminUsersCache) && window.__oeAdminUsersCache.length) {
+			hydrateAdminUsers(window.__oeAdminUsersCache).catch(function () {});
+			return;
+		}
+
+		if (container.dataset.oeAdminsLoaded === '1' || !window.app || !app.user || !parseInt(app.user.uid, 10)) {
+			return;
+		}
+
+		container.dataset.oeAdminsLoaded = '1';
+		require(['api'], function (api) {
+			function fetchAdministratorUsers(after, guard, collectedUsers) {
+				if (guard >= 10) {
+					return Promise.resolve(collectedUsers);
+				}
+
+				return api.get('/groups/administrators/members', {
+					after: after,
+				}).then(function (response) {
+					if (!response || !Array.isArray(response.users) || !response.users.length) {
+						return collectedUsers;
+					}
+
+					var nextUsers = collectedUsers.concat(response.users);
+					if (response.nextStart === null || typeof response.nextStart === 'undefined') {
+						return nextUsers;
+					}
+
+					return fetchAdministratorUsers(response.nextStart, guard + 1, nextUsers);
+				});
+			}
+
+			(async function () {
+				try {
+					var adminUsers = await fetchAdministratorUsers(0, 0, []);
+					window.__oeAdminUsersCache = adminUsers;
+					await hydrateAdminUsers(adminUsers);
+				} catch (err) {
+					container.dataset.oeAdminsLoaded = '0';
+				}
+			}());
+		});
+	}
+
 	renderCategoryLucideIcons();
 	renderTopbarLucideIcons();
 	renderGenericLucideIcons();
@@ -455,6 +647,9 @@ $('document').ready(function () {
 	syncTopicSelectControls();
 	applyTopbarTooltipTheme();
 	syncPanelOffset();
+	hideSkinSelectorForRegularUsers();
+	bindChatEnterToSend(document);
+	pinAdministratorsOnUsersPage();
 
 	$(document).on('click', '#mobile-menu, #mobile-chats, .navbar .navbar-search button[type="button"]', function () {
 		window.setTimeout(syncPanelOffset, 0);
@@ -536,6 +731,9 @@ $('document').ready(function () {
 				syncTopicSelectControls();
 				applyTopbarTooltipTheme();
 				syncPanelOffset();
+				hideSkinSelectorForRegularUsers();
+				bindChatEnterToSend(document);
+				pinAdministratorsOnUsersPage();
 			}
 
 			if (!/^admin\//.test(data.url) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
@@ -556,6 +754,12 @@ $('document').ready(function () {
 			syncTopicSelectControls();
 			applyTopbarTooltipTheme();
 			syncPanelOffset();
+			bindChatEnterToSend(document);
+			pinAdministratorsOnUsersPage();
+		});
+
+		$(window).on('action:chat.loaded', function () {
+			bindChatEnterToSend(document);
 		});
 
 		if ($('.masonry').length && !masonryCalled) {

@@ -425,12 +425,21 @@
 	font-size: 1rem;
 	font-weight: 600;
 	color: var(--text-primary);
+	text-decoration: none;
 	white-space: normal;
 	display: -webkit-box;
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 2;
 	line-height: 1.35;
 	overflow: hidden;
+}
+
+.thread-title:hover,
+.thread-title:focus-visible,
+.thread-title a:hover,
+.thread-title a:focus-visible {
+	color: var(--text-primary);
+	text-decoration: none;
 }
 
 .thread-meta-line {

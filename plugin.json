@@ -1,12 +1,20 @@
 {
 	"id": "nodebb-theme-obsidian-exchange",
 	"library": "./lib/theme.js",
+	"staticDirs": {
+		"icons": "static/icons"
+	},
 	"hooks": [
 		{ "hook": "filter:widgets.getAreas", "method": "defineWidgetAreas" },
 		{ "hook": "static:app.load", "method": "init" },
 		{ "hook": "static:app.preload", "method": "preinit" },
 		{ "hook": "filter:admin.header.build", "method": "addAdminNavigation" },
-		{ "hook": "filter:config.get", "method": "getConfig" }
+		{ "hook": "filter:config.get", "method": "getConfig" },
+		{ "hook": "filter:users.addFields", "method": "addUserListFields" },
+		{ "hook": "filter:userlist.get", "method": "decorateUserList" },
+		{ "hook": "filter:groups.get", "method": "injectGroupIcons" },
+		{ "hook": "filter:group.get", "method": "injectGroupIcons" },
+		{ "hook": "filter:group.getOwnersAndMembers", "method": "injectGroupIcons" }
 	],
 	"scripts": [
 		"static/lib/obsidian-exchange.js",
