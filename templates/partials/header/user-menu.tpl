@@ -1,4 +1,4 @@
-<li id="user_label" class="nav-item dropdown px-3" title="[[global:header.profile]]">
+<li id="user_label" class="nav-item dropdown" title="[[global:header.profile]]">
 	<a href="#" for="user-control-list-check" data-bs-toggle="dropdown" id="user_dropdown" role="button" component="header/avatar" aria-haspopup="true" aria-expanded="false">
 		{buildAvatar(user, "32px", false)}
 	</a>

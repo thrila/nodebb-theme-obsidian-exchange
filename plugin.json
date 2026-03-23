@@ -13,6 +13,7 @@
 		{ "hook": "filter:users.addFields", "method": "addUserListFields" },
 		{ "hook": "filter:userlist.get", "method": "decorateUserList" },
 		{ "hook": "filter:groups.get", "method": "injectGroupIcons" },
+		{ "hook": "filter:groups.list", "method": "injectGroupIcons" },
 		{ "hook": "filter:group.get", "method": "injectGroupIcons" },
 		{ "hook": "filter:group.getOwnersAndMembers", "method": "injectGroupIcons" }
 	],

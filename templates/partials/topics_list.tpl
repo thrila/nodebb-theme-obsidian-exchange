@@ -79,7 +79,11 @@
 						</div>
 
 						<p class="thread-meta-line">
-							{buildCategoryIcon(./category, "18px", "rounded-circle")}
+							{{{ if topics.category.icon }}}
+							<span class="oe-category-inline-icon oe-category-inline-icon-sm" aria-hidden="true">
+								<i class="fa {topics.category.icon}"></i>
+							</span>
+							{{{ end }}}
 							<a href="{config.relative_path}/category/{topics.category.slug}">{topics.category.name}</a>
 							&bull; <span class="timeago" title="{topics.timestampISO}"></span>
 						</p>

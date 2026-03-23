@@ -7,6 +7,14 @@
 		<div class="oe-user-card-head">
 			<span component="user/status" class="oe-status-dot status {users.status}" aria-hidden="true"></span>
 			<a class="oe-user-card-name text-truncate" href="{config.relative_path}/user/{users.userslug}">{users.username}</a>
+			{{{ if users.primaryRoleLabel }}}
+			<span class="oe-user-card-role-badge" title="{users.primaryRoleLabel}">
+				{{{ if users.primaryRoleIcon }}}
+				<img class="oe-user-card-role-icon" src="{users.primaryRoleIcon}" alt="" aria-hidden="true" />
+				{{{ end }}}
+				<span class="oe-user-card-role-text">{users.primaryRoleLabel}</span>
+			</span>
+			{{{ end }}}
 			{{{ if users.isAdministrator }}}
 			<span class="oe-user-card-admin">Admin</span>
 			{{{ end }}}
@@ -20,10 +28,6 @@
 				</svg>
 				<span class="timeago" title="{users.lastonlineISO}"></span>
 			</span>
-
-			{{{ if users.primaryRoleLabel }}}
-			<span class="oe-user-card-pill">{users.primaryRoleLabel}</span>
-			{{{ end }}}
 		</div>
 
 		<div class="oe-user-card-stats">

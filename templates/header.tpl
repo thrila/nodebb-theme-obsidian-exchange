@@ -22,7 +22,7 @@
 
 			// Keep content below the fixed topbar even before runtime measurements finish.
 			const initialOffset = storedOffset > 0 ? storedOffset : 0;
-			document.documentElement.style.setProperty('--panel-offset', `${initialOffset}px`);
+			document.documentElement.style.setProperty('--panel-offset', String(initialOffset) + 'px');
 		})();
 	</script>
 
@@ -64,7 +64,7 @@
 
 					const extraOffset = readPanelOffsetExtra();
 					const offset = Math.ceil(header.getBoundingClientRect().height) + extraOffset;
-					document.documentElement.style.setProperty('--panel-offset', `${offset}px`);
+					document.documentElement.style.setProperty('--panel-offset', String(offset) + 'px');
 					try {
 						localStorage.setItem('panelOffset', String(offset));
 					} catch (err) {

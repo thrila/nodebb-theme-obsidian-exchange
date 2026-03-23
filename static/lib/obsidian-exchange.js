@@ -473,10 +473,6 @@ $('document').ready(function () {
 	}
 
 	function bindChatEnterToSend(root) {
-		if (!window.utils || !utils.isMobile()) {
-			return;
-		}
-
 		var scope = root || document;
 		scope.querySelectorAll('[component="chat/input"]').forEach(function (input) {
 			if (input.dataset.oeEnterSendBound === '1') {
@@ -579,6 +575,9 @@ $('document').ready(function () {
 				if (!adminUser.primaryRoleLabel) {
 					adminUser.primaryRoleLabel = 'Administrators';
 				}
+				if (!adminUser.primaryRoleIcon && typeof config !== 'undefined') {
+					adminUser.primaryRoleIcon = config.obsidianAdministratorRoleIcon || '';
+				}
 				usersToInsert.push(adminUser);
 			});
 
@@ -601,7 +600,7 @@ $('document').ready(function () {
 			return;
 		}
 
-		if (container.dataset.oeAdminsLoaded === '1' || !window.app || !app.user || !parseInt(app.user.uid, 10)) {
+		if (container.dataset.oeAdminsLoaded === '1') {
 			return;
 		}
 

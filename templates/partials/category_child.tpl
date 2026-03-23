@@ -41,7 +41,11 @@
 			<div class="forum-category-children">
 				{{{ each ./children }}}
 				<a href="{{{ if ./link }}}{./link}{{{ else }}}{config.relative_path}/category/{./slug}{{{ end }}}" class="forum-category-child">
-					{buildCategoryIcon(@value, "20px", "rounded-circle")}
+					{{{ if ./icon }}}
+					<span class="oe-category-inline-icon" aria-hidden="true">
+						<i class="fa {./icon}"></i>
+					</span>
+					{{{ end }}}
 					<span>{./name}</span>
 				</a>
 				{{{ end }}}
