@@ -1,6 +1,5 @@
 {
 	"id": "nodebb-theme-obsidian-exchange",
-	"library": "./lib/theme.js",
 	"staticDirs": {
 		"icons": "static/icons"
 	},

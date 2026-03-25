@@ -2,7 +2,7 @@
   "name": "nodebb-theme-obsidian-exchange",
   "version": "7.1.21",
   "description": "A custom Theme for NodeBB",
-  "main": "theme.scss",
+  "main": "./lib/theme.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/thrila/nodebb-theme-obsidian-exchange"
