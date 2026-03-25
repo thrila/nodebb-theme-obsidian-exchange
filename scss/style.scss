@@ -677,6 +677,27 @@ input {
 	border-radius: var(--radius-md);
 }
 
+.tooltip.oe-composer-tooltip {
+	--bs-tooltip-color: var(--text-primary);
+	--bs-tooltip-bg: var(--base-200-95);
+	--bs-tooltip-opacity: 1;
+}
+
+.tooltip.oe-composer-tooltip .tooltip-inner {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-md);
+	background: var(--base-200-95);
+	color: var(--text-primary) !important;
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+}
+
+.tooltip.oe-composer-tooltip .tooltip-arrow::before {
+	border-top-color: var(--base-200-95);
+	border-bottom-color: var(--base-200-95);
+}
+
 #panel #content {
 	width: calc(100% - 24px);
 	margin-inline: auto;
@@ -1514,7 +1535,7 @@ body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper
 .composer .composer-toolbar {
 	border: 1px solid var(--border-default);
 	border-radius: var(--radius-lg);
-	background: var(--base-300);
+	background: var(--base-200);
 	padding: 6px;
 	gap: 6px;
 }
@@ -1525,8 +1546,21 @@ body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper
 .composer .formatting-bar button,
 .composer .composer-formatting button,
 .composer .composer-toolbar button {
+	--bs-btn-color: var(--text-secondary);
+	--bs-btn-hover-color: var(--text-primary);
+	--bs-btn-active-color: var(--text-primary);
+	--bs-btn-disabled-color: var(--text-tertiary);
+	--bs-btn-bg: transparent;
+	--bs-btn-hover-bg: var(--base-300);
+	--bs-btn-active-bg: var(--base-300);
+	--bs-btn-border-color: transparent;
+	--bs-btn-hover-border-color: var(--border-light);
+	--bs-btn-active-border-color: var(--border-light);
 	color: var(--text-secondary);
+	border: 1px solid transparent;
 	border-radius: var(--radius-md);
+	background: transparent;
+	box-shadow: none;
 }
 
 #composer .formatting-bar button:hover,
@@ -1547,8 +1581,39 @@ body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper
 .composer .composer-toolbar button:hover,
 .composer .composer-toolbar button:focus-visible,
 .composer .composer-toolbar button.active {
-	background: var(--base-400);
-	color: var(--text-primary);
+	border-color: var(--border-light);
+	background: var(--base-300);
+	color: var(--text-primary) !important;
+}
+
+#composer .formatting-bar button > *,
+#composer .composer-formatting button > *,
+#composer .composer-toolbar button > *,
+.composer .formatting-bar button > *,
+.composer .composer-formatting button > *,
+.composer .composer-toolbar button > * {
+	color: inherit !important;
+}
+
+#composer .formatting-bar button:hover > *,
+#composer .formatting-bar button:focus-visible > *,
+#composer .formatting-bar button.active > *,
+#composer .composer-formatting button:hover > *,
+#composer .composer-formatting button:focus-visible > *,
+#composer .composer-formatting button.active > *,
+#composer .composer-toolbar button:hover > *,
+#composer .composer-toolbar button:focus-visible > *,
+#composer .composer-toolbar button.active > *,
+.composer .formatting-bar button:hover > *,
+.composer .formatting-bar button:focus-visible > *,
+.composer .formatting-bar button.active > *,
+.composer .composer-formatting button:hover > *,
+.composer .composer-formatting button:focus-visible > *,
+.composer .composer-formatting button.active > *,
+.composer .composer-toolbar button:hover > *,
+.composer .composer-toolbar button:focus-visible > *,
+.composer .composer-toolbar button.active > * {
+	color: inherit !important;
 }
 
 #composer .EasyMDEContainer .editor-toolbar,
@@ -1658,6 +1723,434 @@ body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper
 .composer .help a:hover,
 .composer .help a:focus-visible {
 	color: var(--text-primary);
+}
+
+/* Full composer layout polish so chat/topic replies inherit the same matte card system */
+#composer .p-2.d-flex.flex-column.gap-1.h-100,
+.composer .p-2.d-flex.flex-column.gap-1.h-100 {
+	gap: 12px !important;
+	padding: 16px !important;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--base-200);
+}
+
+#composer .title-container,
+.composer .title-container {
+	align-items: flex-start !important;
+	justify-content: space-between;
+	gap: 12px !important;
+	padding-bottom: 10px;
+	border-bottom: 1px solid var(--border-default);
+}
+
+#composer [data-component="composer/title"] .title,
+.composer [data-component="composer/title"] .title {
+	color: var(--text-primary);
+	font-size: 0.95rem;
+	font-weight: 600;
+}
+
+#composer .quick-search-container.dropdown-menu,
+.composer .quick-search-container.dropdown-menu,
+#composer .dropdown-menu,
+.composer .dropdown-menu {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--base-200);
+	color: var(--text-primary);
+	box-shadow: none;
+}
+
+#composer .dropdown-item,
+.composer .dropdown-item {
+	color: var(--text-secondary);
+	border-radius: var(--radius-md);
+}
+
+#composer .dropdown-item:hover,
+#composer .dropdown-item:focus-visible,
+.composer .dropdown-item:hover,
+.composer .dropdown-item:focus-visible {
+	background: var(--base-300);
+	color: var(--text-primary);
+}
+
+#composer .formatting-group,
+.composer .formatting-group {
+	align-items: center;
+	flex-wrap: nowrap;
+	gap: 6px !important;
+}
+
+#composer .formatting-group > li,
+.composer .formatting-group > li {
+	flex: 0 0 auto;
+}
+
+#composer .formatting-bar .dropdown-menu,
+.composer .formatting-bar .dropdown-menu {
+	min-width: 11rem;
+	padding: 6px !important;
+}
+
+#composer .formatting-bar .dropdown-item,
+.composer .formatting-bar .dropdown-item {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-height: 34px;
+	padding: 7px 10px;
+	font-size: 0.8125rem;
+}
+
+#composer .formatting-bar .dropdown-item i,
+.composer .formatting-bar .dropdown-item i {
+	width: 14px;
+	text-align: center;
+	color: var(--text-tertiary) !important;
+	flex: 0 0 auto;
+}
+
+#composer .formatting-bar .dropdown-item i:empty,
+.composer .formatting-bar .dropdown-item i:empty {
+	display: none;
+}
+
+#composer .formatting-bar .dropdown-item[data-format^="heading"]::before,
+.composer .formatting-bar .dropdown-item[data-format^="heading"]::before {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 2rem;
+	height: 1.4rem;
+	padding-inline: 0.4rem;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-pill);
+	background: var(--base-300);
+	color: var(--text-secondary);
+	font-size: 0.625rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	line-height: 1;
+	text-transform: uppercase;
+	content: 'H';
+}
+
+#composer .formatting-bar .dropdown-item[data-format="heading1"]::before,
+.composer .formatting-bar .dropdown-item[data-format="heading1"]::before {
+	content: 'H1';
+}
+
+#composer .formatting-bar .dropdown-item[data-format="heading2"]::before,
+.composer .formatting-bar .dropdown-item[data-format="heading2"]::before {
+	content: 'H2';
+}
+
+#composer .formatting-bar .dropdown-item[data-format="heading3"]::before,
+.composer .formatting-bar .dropdown-item[data-format="heading3"]::before {
+	content: 'H3';
+}
+
+#composer .formatting-bar .dropdown-item[data-format="heading4"]::before,
+.composer .formatting-bar .dropdown-item[data-format="heading4"]::before {
+	content: 'H4';
+}
+
+#composer .formatting-bar .dropdown-item[data-format="heading5"]::before,
+.composer .formatting-bar .dropdown-item[data-format="heading5"]::before {
+	content: 'H5';
+}
+
+#composer .formatting-bar .dropdown-item[data-format="heading6"]::before,
+.composer .formatting-bar .dropdown-item[data-format="heading6"]::before {
+	content: 'H6';
+}
+
+#composer .action-bar,
+#composer .formatting-bar,
+.composer .action-bar,
+.composer .formatting-bar {
+	flex-wrap: wrap;
+}
+
+#composer .composer-minimize,
+#composer .composer-discard,
+#composer [data-action="preview"],
+#composer [data-action="help"],
+.composer .composer-minimize,
+.composer .composer-discard,
+.composer [data-action="preview"],
+.composer [data-action="help"] {
+	--bs-btn-color: var(--text-secondary);
+	--bs-btn-hover-color: var(--text-primary);
+	--bs-btn-active-color: var(--text-primary);
+	--bs-btn-bg: var(--base-300);
+	--bs-btn-hover-bg: var(--base-400);
+	--bs-btn-active-bg: var(--base-400);
+	--bs-btn-border-color: var(--border-default);
+	--bs-btn-hover-border-color: var(--border-light);
+	--bs-btn-active-border-color: var(--border-light);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 34px;
+	padding: 6px 12px !important;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	color: var(--text-secondary) !important;
+	text-decoration: none;
+	box-shadow: none;
+}
+
+#composer .composer-minimize:hover,
+#composer .composer-minimize:focus-visible,
+#composer .composer-discard:hover,
+#composer .composer-discard:focus-visible,
+#composer [data-action="preview"]:hover,
+#composer [data-action="preview"]:focus-visible,
+#composer [data-action="help"]:hover,
+#composer [data-action="help"]:focus-visible,
+.composer .composer-minimize:hover,
+.composer .composer-minimize:focus-visible,
+.composer .composer-discard:hover,
+.composer .composer-discard:focus-visible,
+.composer [data-action="preview"]:hover,
+.composer [data-action="preview"]:focus-visible,
+.composer [data-action="help"]:hover,
+.composer [data-action="help"]:focus-visible {
+	border-color: var(--border-light);
+	background: var(--base-400);
+	color: var(--text-primary) !important;
+}
+
+#composer .composer-minimize > *,
+#composer .composer-discard > *,
+#composer [data-action="preview"] > *,
+#composer [data-action="help"] > *,
+.composer .composer-minimize > *,
+.composer .composer-discard > *,
+.composer [data-action="preview"] > *,
+.composer [data-action="help"] > * {
+	color: inherit !important;
+}
+
+#composer .composer-submit,
+.composer .composer-submit {
+	--bs-btn-color: var(--text-primary);
+	--bs-btn-hover-color: var(--text-primary);
+	--bs-btn-active-color: var(--text-primary);
+	--bs-btn-bg: var(--base-300);
+	--bs-btn-hover-bg: var(--base-400);
+	--bs-btn-active-bg: var(--base-400);
+	--bs-btn-border-color: rgba(139, 92, 246, 0.55);
+	--bs-btn-hover-border-color: rgba(139, 92, 246, 0.6);
+	--bs-btn-active-border-color: rgba(139, 92, 246, 0.6);
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 36px;
+	padding-inline: 14px;
+	border: 1px solid rgba(139, 92, 246, 0.55) !important;
+	border-radius: var(--radius-lg) !important;
+	background: var(--base-300);
+	color: var(--text-primary) !important;
+	box-shadow: none;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+	transition: background-color var(--duration-normal) var(--ease-standard);
+}
+
+#composer .composer-submit:hover,
+#composer .composer-submit:focus-visible,
+.composer .composer-submit:hover,
+.composer .composer-submit:focus-visible {
+	background: var(--base-400);
+}
+
+#composer .composer-submit > *,
+.composer .composer-submit > * {
+	color: inherit !important;
+}
+
+#composer [component="composer/submit/options/container"] .dropdown-toggle,
+.composer [component="composer/submit/options/container"] .dropdown-toggle {
+	--bs-btn-color: var(--text-primary);
+	--bs-btn-hover-color: var(--text-primary);
+	--bs-btn-active-color: var(--text-primary);
+	--bs-btn-bg: var(--base-300);
+	--bs-btn-hover-bg: var(--base-400);
+	--bs-btn-active-bg: var(--base-400);
+	--bs-btn-border-color: rgba(139, 92, 246, 0.55);
+	--bs-btn-hover-border-color: rgba(139, 92, 246, 0.6);
+	--bs-btn-active-border-color: rgba(139, 92, 246, 0.6);
+	min-width: 36px;
+	border: 1px solid rgba(139, 92, 246, 0.55);
+	border-radius: var(--radius-lg);
+	background: var(--base-300);
+	color: var(--text-primary) !important;
+	box-shadow: none;
+}
+
+#composer [component="composer/submit/options/container"] .dropdown-toggle:hover,
+#composer [component="composer/submit/options/container"] .dropdown-toggle:focus-visible,
+.composer [component="composer/submit/options/container"] .dropdown-toggle:hover,
+.composer [component="composer/submit/options/container"] .dropdown-toggle:focus-visible {
+	background: var(--base-400);
+	color: var(--text-primary) !important;
+}
+
+#composer [component="composer/submit/options/container"] .dropdown-toggle > *,
+.composer [component="composer/submit/options/container"] .dropdown-toggle > * {
+	color: inherit !important;
+}
+
+#composer .write-preview-container,
+.composer .write-preview-container {
+	align-items: stretch;
+	gap: 12px !important;
+	min-height: clamp(18rem, 42vh, 34rem);
+	overflow: hidden;
+}
+
+#composer .write-container,
+#composer .preview-container,
+.composer .write-container,
+.composer .preview-container {
+	min-width: 0;
+}
+
+#composer .write-container,
+.composer .write-container {
+	position: relative;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--base-200);
+	overflow: hidden;
+}
+
+#composer .write-container .write,
+.composer .write-container .write {
+	min-height: clamp(16rem, 36vh, 30rem);
+	border: 0 !important;
+	border-radius: 0 !important;
+	background: transparent !important;
+	box-shadow: none !important;
+	color: var(--text-primary);
+	padding: 16px 16px 24px;
+	resize: none;
+}
+
+#composer .write-container .write:focus,
+.composer .write-container .write:focus {
+	box-shadow: none;
+}
+
+#composer .preview-container .preview,
+.composer .preview-container .preview {
+	min-height: clamp(16rem, 36vh, 30rem);
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-xl);
+	background: var(--base-200);
+	color: var(--text-primary);
+	padding: 16px;
+}
+
+#composer .preview-container .preview > div,
+.composer .preview-container .preview > div {
+	min-height: 100%;
+}
+
+#composer .preview-container .preview p,
+#composer .preview-container .preview li,
+.composer .preview-container .preview p,
+.composer .preview-container .preview li {
+	color: var(--text-primary);
+}
+
+#composer .preview-container .preview a,
+.composer .preview-container .preview a {
+	color: var(--accent-primary);
+}
+
+#composer .imagedrop,
+.composer .imagedrop {
+	position: absolute;
+	inset: 12px;
+	width: auto;
+	height: auto;
+	display: none;
+	border: 1px dashed var(--border-light);
+	border-radius: var(--radius-xl);
+	background: rgba(15, 15, 15, 0.76);
+	color: var(--text-secondary);
+	backdrop-filter: blur(10px);
+}
+
+#composer .imagedrop > div,
+.composer .imagedrop > div {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px 12px;
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-pill);
+	background: var(--base-200-95);
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+#composer .resizer,
+.composer .resizer {
+	border-color: var(--border-default) !important;
+}
+
+#composer .resizer .handle,
+.composer .resizer .handle {
+	border: 1px solid var(--border-default) !important;
+	border-radius: var(--radius-pill);
+	background: var(--base-300) !important;
+	color: var(--text-secondary);
+	box-shadow: none;
+}
+
+#composer .resizer .handle:hover,
+#composer .resizer .handle:focus-visible,
+.composer .resizer .handle:hover,
+.composer .resizer .handle:focus-visible {
+	border-color: var(--border-light) !important;
+	background: var(--base-400) !important;
+	color: var(--text-primary);
+}
+
+#composer .draft-icon,
+.composer .draft-icon {
+	color: var(--text-tertiary);
+}
+
+@media (max-width: 767px) {
+	#composer .title-container,
+	.composer .title-container {
+		flex-direction: column;
+	}
+
+	#composer .action-bar,
+	.composer .action-bar {
+		width: 100%;
+		justify-content: flex-end;
+	}
+
+	#composer .write-preview-container,
+	.composer .write-preview-container {
+		min-height: 16rem;
+	}
 }
 
 /* Markdown editors outside the main composer/quickreply */
@@ -2646,6 +3139,130 @@ body[class*="page-user"]:not(.page-user-chats) #content .account .avatar-wrapper
 	.chat-last-time {
 		color: var(--text-tertiary);
 	}
+}
+
+/* Floating chat window should use the same matte shell as full chat pages */
+.chat-modal .modal-dialog {
+	max-width: min(calc(100vw - 32px), 900px);
+	margin: 24px auto;
+}
+
+.chat-modal .modal-content[component="chat/message/window"] {
+	border: 1px solid var(--border-default);
+	border-radius: var(--radius-2xl);
+	background: var(--base-200-95);
+	color: var(--text-primary);
+	box-shadow: none;
+	backdrop-filter: blur(18px);
+	overflow: hidden;
+}
+
+.chat-modal .modal-header,
+.chat-modal [component="chat/header"] {
+	border-bottom: 1px solid var(--border-default);
+	background: var(--base-300-60);
+	color: var(--text-primary);
+}
+
+.chat-modal .modal-header {
+	padding: 12px 16px;
+}
+
+.chat-modal .modal-body {
+	padding: 0;
+	background: var(--base-200);
+}
+
+.chat-modal [component="chat/header"] {
+	padding: 12px 16px;
+}
+
+.chat-modal [component="chat/header/title"],
+.chat-modal [component="chat/room/name"] {
+	color: var(--text-primary);
+}
+
+.chat-modal [component="chat/header/title"] .text-muted,
+.chat-modal [component="chat/room/name"] .text-muted {
+	color: var(--text-secondary) !important;
+}
+
+.page-user-chats [component="chat/composer"],
+#chats-menu [component="chat/composer"],
+.chat-modal [component="chat/composer"] {
+	gap: 8px;
+	padding: 12px;
+	background: var(--base-200);
+}
+
+.page-user-chats [component="chat/composer"] > .w-100.flex-grow-1,
+#chats-menu [component="chat/composer"] > .w-100.flex-grow-1,
+.chat-modal [component="chat/composer"] > .w-100.flex-grow-1 {
+	gap: 8px;
+	padding: 8px;
+	border: 1px solid var(--border-default) !important;
+	border-radius: var(--radius-xl) !important;
+	background:
+		linear-gradient(180deg, rgba(255, 255, 255, 0.015), transparent 28%),
+		var(--base-200) !important;
+	box-shadow: none;
+}
+
+.page-user-chats [component="chat/composer/replying-to"],
+#chats-menu [component="chat/composer/replying-to"],
+.chat-modal [component="chat/composer/replying-to"] {
+	width: 100%;
+	padding: 8px 10px !important;
+	border: 1px solid rgba(139, 92, 246, 0.35);
+	border-radius: var(--radius-lg);
+	background:
+		linear-gradient(90deg, rgba(139, 92, 246, 0.14), rgba(139, 92, 246, 0.04)),
+		var(--base-300);
+	color: var(--text-primary);
+}
+
+.page-user-chats [component="chat/composer/replying-to-text"],
+#chats-menu [component="chat/composer/replying-to-text"],
+.chat-modal [component="chat/composer/replying-to-text"] {
+	min-width: 0;
+	flex: 1 1 auto;
+	color: var(--text-primary);
+	font-size: 0.8125rem;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+.page-user-chats [component="chat/composer/replying-to-cancel"],
+#chats-menu [component="chat/composer/replying-to-cancel"],
+.chat-modal [component="chat/composer/replying-to-cancel"] {
+	width: 28px;
+	height: 28px;
+	padding: 0 !important;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid var(--border-default) !important;
+	border-radius: var(--radius-pill) !important;
+	background: var(--base-200) !important;
+	color: var(--text-secondary) !important;
+	box-shadow: none;
+}
+
+.page-user-chats [component="chat/composer/replying-to-cancel"]:hover,
+.page-user-chats [component="chat/composer/replying-to-cancel"]:focus-visible,
+#chats-menu [component="chat/composer/replying-to-cancel"]:hover,
+#chats-menu [component="chat/composer/replying-to-cancel"]:focus-visible,
+.chat-modal [component="chat/composer/replying-to-cancel"]:hover,
+.chat-modal [component="chat/composer/replying-to-cancel"]:focus-visible {
+	border-color: var(--border-light) !important;
+	background: var(--base-400) !important;
+	color: var(--text-primary) !important;
+}
+
+.page-user-chats [component="chat/composer"] textarea::placeholder,
+#chats-menu [component="chat/composer"] textarea::placeholder,
+.chat-modal [component="chat/composer"] textarea::placeholder {
+	color: var(--text-tertiary);
 }
 
 /* Chat room layout + bubble styling */

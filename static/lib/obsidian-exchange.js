@@ -2,6 +2,8 @@ $('document').ready(function () {
 	var iconMarkupMap = {
 		'fa-bars': '<path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
 		'fa-search': '<circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.75"></circle><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
+		'fa-question': '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle><path d="M9.75 9a2.25 2.25 0 1 1 3.885 1.54c-.57.58-1.135.965-1.635 1.46V13" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="17" r="1" fill="currentColor"></circle>',
+		'fa-angle-down': '<path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-bell': '<path d="M10 21h4M5.5 16.5h13l-1.5-2.5V10a5 5 0 1 0-10 0v4l-1.5 2.5Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-bell-o': '<path d="M10 21h4M5.5 16.5h13l-1.5-2.5V10a5 5 0 1 0-10 0v4l-1.5 2.5Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-bell-slash-o': '<path d="M10.268 21a2 2 0 0 0 3.464 0"></path><path d="M17 17H4a1 1 0 0 1-.74-1.673C4.59 13.956 6 12.499 6 8a6 6 0 0 1 .258-1.742"></path><path d="m2 2 20 20"></path><path d="M8.668 3.01A6 6 0 0 1 18 8c0 2.687.77 4.653 1.707 6.05"></path>',
@@ -19,6 +21,7 @@ $('document').ready(function () {
 		'fa-arrow-down-wide-short': '<path d="m3 16 4 4 4-4"></path><path d="M7 20V4"></path><path d="M11 4h10"></path><path d="M11 8h7"></path><path d="M11 12h4"></path>',
 		'fa-check': '<path d="m5 12 4 4 10-10" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-times': '<path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
+		'fa-trash': '<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><path d="M3 6h18" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
 		'fa-pencil': '<path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-sign-in': '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-sign-in-alt': '<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
@@ -29,6 +32,7 @@ $('document').ready(function () {
 		'fa-clock-o': '<path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle>',
 		'fa-eye': '<path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle>',
 		'fa-eye-slash': '<path d="M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49"></path><path d="M14.084 14.158a3 3 0 0 1-4.242-4.242"></path><path d="M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143"></path><path d="m2 2 20 20"></path>',
+		'fa-link': '<path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L13 19.07" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-users': '<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><circle cx="8.5" cy="7" r="4" stroke="currentColor" stroke-width="1.75"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
 		'fa-user': '<path d="M20 21a8 8 0 1 0-16 0" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><circle cx="12" cy="7" r="4" stroke="currentColor" stroke-width="1.75"></circle>',
 		'fa-bullhorn': '<path d="M3 11v2a1 1 0 0 0 1 1h2l3 5h2l-2.5-5H13l6 4V6l-6 4H4a1 1 0 0 0-1 1Z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
@@ -45,15 +49,30 @@ $('document').ready(function () {
 		'fa-trash-o': '<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"></path><path d="M3 6h18"></path><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>',
 		'fa-history': '<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l4 2"></path>',
 		'fa-eraser': '<path d="M21 21H8a2 2 0 0 1-1.42-.587l-3.994-3.999a2 2 0 0 1 0-2.828l10-10a2 2 0 0 1 2.829 0l5.999 6a2 2 0 0 1 0 2.828L12.834 21"></path><path d="m5.082 11.09 8.828 8.828"></path>',
+		'fa-bold': '<path d="M8 5h5a3 3 0 0 1 0 6H8z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 11h6a3.5 3.5 0 0 1 0 7H8z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path>',
+		'fa-italic': '<path d="M14 4h-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><path d="M14 20h-4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><path d="M14 4 10 20" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-heading': '<path d="M6 5v14M18 5v14M6 12h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-list': '<path d="M3 5h.01"></path><path d="M3 12h.01"></path><path d="M3 19h.01"></path><path d="M8 5h13"></path><path d="M8 12h13"></path><path d="M8 19h13"></path>',
+		'fa-list-ul': '<path d="M4 6h.01M4 12h.01M4 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M8 6h12M8 12h12M8 18h12" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
+		'fa-strikethrough': '<path d="M5 12h14" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><path d="M8.5 6.5h5.5a2.5 2.5 0 1 1 0 5H10a2.5 2.5 0 1 0 0 5h5.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-rss': '<path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle>',
 		'fa-square-arrow-up-right': '<rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M8 8h8v8"></path><path d="m8 16 8-8"></path>',
 		'fa-square-o': '<rect width="18" height="18" x="3" y="3" rx="2"></rect>',
 		'fa-square': '<rect width="18" height="18" x="3" y="3" rx="2"></rect>',
+		'fa-picture': '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.75"></rect><circle cx="9" cy="10" r="1.25" fill="currentColor"></circle><path d="m6 16 4-4 3 3 3-4 2 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-picture-o': '<rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.75"></rect><circle cx="9" cy="10" r="1.25" fill="currentColor"></circle><path d="m6 16 4-4 3 3 3-4 2 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
 		'fa-upload': '<path d="M12 3v12"></path><path d="m17 8-5-5-5 5"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>',
+		'fa-file-image': '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><circle cx="10" cy="12" r="1.25" fill="currentColor"></circle><path d="m8 18 3-3 2 2 3-4 2 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-file-image-o': '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><circle cx="10" cy="12" r="1.25" fill="currentColor"></circle><path d="m8 18 3-3 2 2 3-4 2 5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-file': '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 13h8M8 17h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
+		'fa-file-o': '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M14 2v6h6" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 13h8M8 17h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
 		'fa-floppy-o': '<path d="M4 4h13l3 3v13H4z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M8 4v6h8V4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><rect x="8" y="14" width="8" height="6" rx="1" stroke="currentColor" stroke-width="1.75"></rect>',
+		'fa-paper-plane': '<path d="M3 11.5 21 3l-7 18-2.8-6.2L3 11.5Z" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"></path><path d="M21 3 11.2 14.8" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
 		'fa-refresh': '<path d="M21 12a9 9 0 1 1-3.2-6.9" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path><path d="M21 3v6h-6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path>',
+		'fa-arrows-alt': '<path d="M15 3h6v6M9 21H3v-6M21 9V3h-6M3 15v6h6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path><path d="m14 10 7-7M3 21l7-7M14 14l7 7M3 3l7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"></path>',
 		'fa-expand': '<path d="m15 15 6 6"></path><path d="m15 9 6-6"></path><path d="M21 16v5h-5"></path><path d="M21 8V3h-5"></path><path d="M3 16v5h5"></path><path d="m3 21 6-6"></path><path d="M3 8V3h5"></path><path d="M9 9 3 3"></path>',
+		'fa-smile': '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle><path d="M9 14s1.2 2 3 2 3-2 3-2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="9" cy="10" r="1" fill="currentColor"></circle><circle cx="15" cy="10" r="1" fill="currentColor"></circle>',
+		'fa-smile-o': '<circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.75"></circle><path d="M9 14s1.2 2 3 2 3-2 3-2" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="9" cy="10" r="1" fill="currentColor"></circle><circle cx="15" cy="10" r="1" fill="currentColor"></circle>',
 		'fa-paint-brush': '<path d="m14.622 17.897-10.68-2.913"></path><path d="M18.376 2.622a1 1 0 1 1 3.002 3.002L17.36 9.643a.5.5 0 0 0 0 .707l.944.944a2.41 2.41 0 0 1 0 3.408l-.944.944a.5.5 0 0 1-.707 0L8.354 7.348a.5.5 0 0 1 0-.707l.944-.944a2.41 2.41 0 0 1 3.408 0l.944.944a.5.5 0 0 0 .707 0z"></path><path d="M9 8c-1.804 2.71-3.97 3.46-6.583 3.948a.507.507 0 0 0-.302.819l7.32 8.883a1 1 0 0 0 1.185.204C12.735 20.405 16 16.792 16 15"></path>',
 		'fa-calendar': '<path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path>',
 		'fa-calendar-o': '<path d="M8 2v4"></path><path d="M16 2v4"></path><rect width="18" height="18" x="3" y="4" rx="2"></rect><path d="M3 10h18"></path>',
@@ -167,6 +186,143 @@ $('document').ready(function () {
 		return src;
 	}
 
+	function normalizeGroupKey(value) {
+		return String(value || '').trim().toLowerCase();
+	}
+
+	function getConfiguredGroupIconMappings() {
+		if (typeof config === 'undefined' || !config || !config.obsidianGroupIconMappings || typeof config.obsidianGroupIconMappings !== 'object') {
+			return null;
+		}
+
+		return config.obsidianGroupIconMappings;
+	}
+
+	function absolutizeBadgeImageSrc(src) {
+		if (!src) {
+			return '';
+		}
+
+		var normalizedSrc = src;
+		try {
+			normalizedSrc = decodeURIComponent(normalizedSrc);
+		} catch (err) {
+			// Keep original src when token isn't URI-encoded.
+		}
+
+		if (!/^https?:\/\//i.test(normalizedSrc) && normalizedSrc.indexOf('//') !== 0 && normalizedSrc.indexOf('/') !== 0) {
+			if (typeof config !== 'undefined' && config.relative_path) {
+				normalizedSrc = config.relative_path.replace(/\/$/, '') + '/' + normalizedSrc;
+			} else {
+				normalizedSrc = '/' + normalizedSrc;
+			}
+		}
+
+		return normalizedSrc;
+	}
+
+	function collectGroupBadgeLookupKeys(badge) {
+		var values = [];
+		var href = badge.getAttribute('href') || '';
+		var hrefMatch = href.match(/\/groups\/([^/?#]+)/i);
+
+		[
+			'data-group-name',
+			'data-group-slug',
+			'title',
+			'aria-label',
+			'data-bs-original-title',
+			'data-original-title',
+		].forEach(function (attr) {
+			var attrValue = badge.getAttribute(attr);
+			if (attrValue) {
+				values.push(attrValue);
+			}
+		});
+
+		if (badge.dataset) {
+			['groupName', 'groupSlug', 'groupDisplayName'].forEach(function (key) {
+				if (badge.dataset[key]) {
+					values.push(badge.dataset[key]);
+				}
+			});
+		}
+
+		if (hrefMatch && hrefMatch[1]) {
+			values.push(hrefMatch[1]);
+			values.push(hrefMatch[1].replace(/[-_]+/g, ' '));
+		}
+
+		if (badge.textContent) {
+			values.push(badge.textContent);
+		}
+
+		return Array.from(new Set(values.map(function (value) {
+			return String(value || '').replace(/\s+/g, ' ').trim();
+		}).filter(Boolean)));
+	}
+
+	function resolveGroupBadgeMappedSrc(badge) {
+		var mappings = getConfiguredGroupIconMappings();
+		if (!mappings) {
+			return '';
+		}
+
+		var candidates = collectGroupBadgeLookupKeys(badge);
+		for (var i = 0; i < candidates.length; i += 1) {
+			var rawCandidate = candidates[i];
+			var normalized = normalizeGroupKey(rawCandidate);
+			var slugCandidate = normalized.replace(/\s+/g, '-');
+			var spacedCandidate = normalized.replace(/[-_]+/g, ' ');
+
+			if (mappings[normalized]) {
+				return mappings[normalized];
+			}
+
+			if (mappings[slugCandidate]) {
+				return mappings[slugCandidate];
+			}
+
+			if (mappings[spacedCandidate]) {
+				return mappings[spacedCandidate];
+			}
+		}
+
+		return '';
+	}
+
+	function createGroupBadgeImage(src) {
+		var img = document.createElement('img');
+		img.src = absolutizeBadgeImageSrc(src);
+		img.alt = '';
+		img.setAttribute('aria-hidden', 'true');
+		img.className = 'oe-badge-icon';
+		return img;
+	}
+
+	function replaceGroupBadgeImage(badge, src) {
+		var normalizedSrc = absolutizeBadgeImageSrc(src);
+		if (!normalizedSrc) {
+			return;
+		}
+
+		var existingImage = badge.querySelector('.oe-badge-icon');
+		if (existingImage && existingImage.getAttribute('src') === normalizedSrc) {
+			badge.dataset.oeBadgeImageBound = '1';
+			return;
+		}
+
+		var img = createGroupBadgeImage(normalizedSrc);
+		var replacementTarget = badge.querySelector('.oe-badge-icon, i, svg.oe-icon, img');
+		if (replacementTarget) {
+			replacementTarget.replaceWith(img);
+		} else {
+			badge.insertBefore(img, badge.firstChild);
+		}
+
+		badge.dataset.oeBadgeImageBound = '1';
+	}
+
 	function isGroupBadgeIcon(icon) {
 		return Boolean(icon.closest('.group-label, [component="user/group-label"], a.badge[href*="/groups/"]'));
 	}
@@ -235,7 +391,7 @@ $('document').ready(function () {
 	function renderGenericLucideIcons(root) {
 		var scope = root || document;
 
-		scope.querySelectorAll('.forum-app i.fa, .forum-app i.fa-regular, .forum-app i.fa-solid, #menu i.fa, #chats-menu i.fa').forEach(function (icon) {
+		scope.querySelectorAll('.forum-app i.fa, .forum-app i.fa-regular, .forum-app i.fa-solid, #composer i.fa, #composer i.fa-regular, #composer i.fa-solid, .composer i.fa, .composer i.fa-regular, .composer i.fa-solid, #menu i.fa, #chats-menu i.fa').forEach(function (icon) {
 			if (icon.dataset.oeLucideBound === '1') {
 				return;
 			}
@@ -291,38 +447,19 @@ $('document').ready(function () {
 	function renderGroupBadgeImages(root) {
 		var scope = root || document;
 
-		scope.querySelectorAll('.group-label i, [component="user/group-label"] i, a.badge[href*="/groups/"] i').forEach(function (icon) {
-			if (icon.dataset.oeBadgeImageBound === '1') {
-				return;
+		scope.querySelectorAll('.group-label, [component="user/group-label"], a.badge[href*="/groups/"]').forEach(function (badge) {
+			var icon = badge.querySelector('i');
+			var src = icon ? getBadgeImageSrcFromIcon(icon) : '';
+
+			if (!src) {
+				src = resolveGroupBadgeMappedSrc(badge);
 			}
 
-			var src = getBadgeImageSrcFromIcon(icon);
 			if (!src) {
 				return;
 			}
 
-			try {
-				src = decodeURIComponent(src);
-			} catch (err) {
-				// Keep original src when token isn't URI-encoded.
-			}
-
-			if (!/^https?:\/\//i.test(src) && src.indexOf('//') !== 0 && src.indexOf('/') !== 0) {
-				if (typeof config !== 'undefined' && config.relative_path) {
-					src = config.relative_path.replace(/\/$/, '') + '/' + src;
-				} else {
-					src = '/' + src;
-				}
-			}
-
-			var img = document.createElement('img');
-			img.src = src;
-			img.alt = '';
-			img.setAttribute('aria-hidden', 'true');
-			img.className = 'oe-badge-icon';
-
-			icon.dataset.oeBadgeImageBound = '1';
-			icon.replaceWith(img);
+			replaceGroupBadgeImage(badge, src);
 		});
 	}
 
@@ -415,12 +552,11 @@ $('document').ready(function () {
 		});
 	}
 
-	function applyTopbarTooltipTheme(root) {
+	function applyTooltipTheme(root, selector, className) {
 		var scope = root || document;
-		var selector = '.forum-topbar [data-bs-toggle="tooltip"], .forum-topbar [data-toggle="tooltip"], .forum-topbar [title], .forum-topbar [data-original-title], .forum-topbar [data-bs-original-title]';
 
 		scope.querySelectorAll(selector).forEach(function (target) {
-			target.setAttribute('data-bs-custom-class', 'oe-topbar-tooltip');
+			target.setAttribute('data-bs-custom-class', className);
 
 			if (!window.bootstrap || !window.bootstrap.Tooltip || typeof window.bootstrap.Tooltip.getInstance !== 'function') {
 				return;
@@ -433,10 +569,26 @@ $('document').ready(function () {
 
 			existingInstance.dispose();
 			window.bootstrap.Tooltip.getOrCreateInstance(target, {
-				customClass: 'oe-topbar-tooltip',
+				customClass: className,
 				container: 'body',
 			});
 		});
+	}
+
+	function applyTopbarTooltipTheme(root) {
+		applyTooltipTheme(
+			root,
+			'.forum-topbar [data-bs-toggle="tooltip"], .forum-topbar [data-toggle="tooltip"], .forum-topbar [title], .forum-topbar [data-original-title], .forum-topbar [data-bs-original-title]',
+			'oe-topbar-tooltip'
+		);
+	}
+
+	function applyComposerTooltipTheme(root) {
+		applyTooltipTheme(
+			root,
+			'#composer [data-bs-toggle="tooltip"], #composer [data-toggle="tooltip"], #composer [title], #composer [data-original-title], #composer [data-bs-original-title], .composer [data-bs-toggle="tooltip"], .composer [data-toggle="tooltip"], .composer [title], .composer [data-original-title], .composer [data-bs-original-title], [component="chat/composer"] [data-bs-toggle="tooltip"], [component="chat/composer"] [data-toggle="tooltip"], [component="chat/composer"] [title], [component="chat/composer"] [data-original-title], [component="chat/composer"] [data-bs-original-title], [component="chat/message/controls"] [data-bs-toggle="tooltip"], [component="chat/message/controls"] [data-toggle="tooltip"], [component="chat/message/controls"] [title], [component="chat/message/controls"] [data-original-title], [component="chat/message/controls"] [data-bs-original-title]',
+			'oe-composer-tooltip'
+		);
 	}
 
 	function syncPanelOffset() {
@@ -645,6 +797,7 @@ $('document').ready(function () {
 	renderGroupBadgeImages();
 	syncTopicSelectControls();
 	applyTopbarTooltipTheme();
+	applyComposerTooltipTheme();
 	syncPanelOffset();
 	hideSkinSelectorForRegularUsers();
 	bindChatEnterToSend(document);
@@ -729,6 +882,7 @@ $('document').ready(function () {
 				renderGroupBadgeImages();
 				syncTopicSelectControls();
 				applyTopbarTooltipTheme();
+				applyComposerTooltipTheme();
 				syncPanelOffset();
 				hideSkinSelectorForRegularUsers();
 				bindChatEnterToSend(document);
@@ -752,6 +906,7 @@ $('document').ready(function () {
 			renderGroupBadgeImages();
 			syncTopicSelectControls();
 			applyTopbarTooltipTheme();
+			applyComposerTooltipTheme();
 			syncPanelOffset();
 			bindChatEnterToSend(document);
 			pinAdministratorsOnUsersPage();
@@ -759,6 +914,7 @@ $('document').ready(function () {
 
 		$(window).on('action:chat.loaded', function () {
 			bindChatEnterToSend(document);
+			applyComposerTooltipTheme();
 		});
 
 		if ($('.masonry').length && !masonryCalled) {
